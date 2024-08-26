@@ -1,0 +1,28 @@
+{
+  "plugins": ["simple-import-sort"],
+  "extends": ["next/core-web-vitals", "plugins:@typescript-eslint/recommended", "prettier"],
+  "rules": {
+    "eqeqeq": "error",
+    "@next/next/no-img-element": "off",
+    "sort-imports": "off",
+    "react/display-name": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^\\u0000"],
+          ["^react$", "^react-dom"],
+          ["^next\\u0000$", "^next$", "^next/.*\\u0000$", "^next/"],
+          ["^@?\\w"],
+          ["^@/"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          [".svg", ".png"],
+          [".scss", ".css"]
+        ]
+      }
+    ]
+  }
+}
