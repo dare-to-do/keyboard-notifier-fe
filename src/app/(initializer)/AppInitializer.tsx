@@ -1,10 +1,11 @@
 'use client';
 
-import { getQueryClient } from '@/app/(configs)/query/config';
 import { useState } from 'react';
-import { QueryClientProvider } from '@tanstack/react-query';
 
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+import { getQueryClient } from '@/app/(configs)/query/config';
 
 type AppInitializerProps = {
   children: React.ReactNode;
