@@ -1,0 +1,49 @@
+name: git push into another repo to deploy to vercel
+
+on:
+  push:
+    branches: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: pandoc/latex
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install mustache (to update the date)
+        run: apk add ruby && gem install mustache
+      - name: creates output
+        run: sh ./build.sh
+
+      # Push to 'main' branch if the event is triggered on 'main'
+      - name: Pushes to another repository (main branch)
+        if: github.ref == 'refs/heads/main'
+        id: push_directory_main
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GBNS_GITHUB_KEY }}
+        with:
+          source-directory: 'output'
+          destination-github-username: Kidongg
+          destination-repository-name: keyboard-notifier-fe
+          user-email: ${{ secrets.GBNS_ACCOUNT_EMAIL }}
+          commit-message: ${{ github.event.commits[0].message }}
+          target-branch: main
+
+      # Push to 'develop' branch if the event is triggered on 'develop'
+      - name: Pushes to another repository (develop branch)
+        if: github.ref == 'refs/heads/develop'
+        id: push_directory_develop
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GBNS_GITHUB_KEY }}
+        with:
+          source-directory: 'output'
+          destination-github-username: Kidongg
+          destination-repository-name: keyboard-notifier-fe
+          user-email: ${{ secrets.GBNS_ACCOUNT_EMAIL }}
+          commit-message: ${{ github.event.commits[0].message }}
+          target-branch: develop
+
+      - name: Test get variable exported by push-to-another-repository
+        run: echo $DESTINATION_CLONED_DIRECTORY
