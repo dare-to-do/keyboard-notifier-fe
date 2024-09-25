@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { gmarketSans } from '@/app/(configs)/font/config';
 import AppInitializer from '@/app/(initializer)/AppInitializer';
 
+import '@/app/(styles)/_reset.scss';
+
 export const metadata: Metadata = {
   title: 'GiBi',
   description: 'Group Buy Custom Keyboard',
