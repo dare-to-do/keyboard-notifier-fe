@@ -4,6 +4,7 @@ import { gmarketSans } from '@/app/(configs)/font/config';
 import AppInitializer from '@/app/(initializer)/AppInitializer';
 
 import '@/app/(styles)/_reset.scss';
+import '@/app/(styles)/_global.scss';
 
 export const metadata: Metadata = {
   title: 'GiBi',
