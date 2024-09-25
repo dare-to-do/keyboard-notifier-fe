@@ -1,5 +1,3 @@
-@import '@/app/(styles)/_variables.scss';
-
 // 데스크탑
 @mixin desktop {
   @media (min-width: 1128px) {

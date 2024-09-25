@@ -1,0 +1,35 @@
+@import '@/app/(styles)/_variables.scss';
+@import '@/app/(styles)/_mixin.scss';
+
+.container {
+  width: 79px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+
+  &.clicked {
+    background-color: $clicked-button-background-color; /* 클릭 시 배경색 */
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+}
+
+// 모바일
+@include mobile {
+  .container {
+    width: 71px;
+    height: 40px;
+
+    .text {
+      font-size: 14px;
+      line-height: 16.8px;
+    }
+  }
+}
