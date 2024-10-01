@@ -1,0 +1,21 @@
+.navbar {
+  border-bottom: 1px solid #42424b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1076px;
+  min-width: 360px;
+  max-width: 1124px;
+  padding: 14px 0;
+}
+
+.logo {
+  color: #72ff70;
+}
