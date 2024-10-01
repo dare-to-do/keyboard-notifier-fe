@@ -5,27 +5,51 @@ import { useState } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaCaretUp } from 'react-icons/fa';
 
-import DropdownSelectPopover from '@/app/components/DropdownSelectPopover/DropdownSelectPopover';
-
 import styles from './DropdownSelect.module.scss';
 
-export default function DropdownSelect({ text }: Readonly<{ text: string }>) {
-  const [isClicked, setIsClicked] = useState(false);
+type Items = {
+  text: string;
+  value: string;
+};
 
-  // 버튼 클릭 시 드롭다운 메뉴 표시
+type ItemsProps = {
+  items: Items[];
+};
+
+export default function DropdownSelect({ items }: ItemsProps) {
+  const [isPopover, setIsPopover] = useState(false);
+  const [clickedItemText, setClickedItemText] = useState(items[0].text);
+
+  // 버튼 클릭 시 드롭다운으로 팝오버 표시
   const handleOnClickDropdown = () => {
-    setIsClicked(!isClicked);
+    setIsPopover(!isPopover);
+  };
+
+  // 드롭다운 메뉴 아이템 클릭 시 텍스트 색상 변경
+  const handleOnClickItem = (text: string) => {
+    setClickedItemText(text);
+    setIsPopover(false);
   };
 
   return (
-    <div className={`${styles.container} ${isClicked ? styles.clicked : ''}`} onClick={handleOnClickDropdown}>
-      <div className={styles.button}>
-        <span className={styles.text}>{text}</span>
-        <span className={styles.icon}>{isClicked ? <FaCaretUp /> : <FaCaretDown />}</span>
+    <div className={styles.container}>
+      <div className={`${styles.button} ${isPopover ? styles.is_popover : ''}`} onClick={handleOnClickDropdown}>
+        <span className={styles.text}>{clickedItemText}</span>
+        <span className={styles.icon}>{isPopover ? <FaCaretUp /> : <FaCaretDown />}</span>
       </div>
-      <div className={styles.popover}>
-        <DropdownSelectPopover />
-      </div>
+      {isPopover && (
+        <div className={styles.popover}>
+          {items.map((item) => (
+            <div
+              className={`${styles.item} ${item.text === clickedItemText ? styles.is_clicked : ''}`}
+              onClick={() => handleOnClickItem(item.text)}
+              key={item.value}
+            >
+              {item.text}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

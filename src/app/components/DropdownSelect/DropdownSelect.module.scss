@@ -5,7 +5,8 @@
   display: flex;
   flex-direction: column;
   width: 111px;
-  align-items: center;
+  align-items: end;
+  gap: 5px;
 
   .button {
     width: 79px;
@@ -16,18 +17,38 @@
     align-items: center;
     gap: 4px;
     cursor: pointer;
+
+    .text {
+      font-size: 16px;
+      line-height: 19.2px;
+    }
+
+    &.is_popover {
+      background-color: $clicked-button-background-color;
+    }
   }
 
   .popover {
-  }
+    width: 111px;
+    height: 160px;
+    border-radius: 4px;
+    background-color: #1c1c1f;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-  &.clicked {
-    background-color: $clicked-button-background-color; /* 클릭 시 배경색 */
-  }
+    .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      cursor: pointer;
+      color: #9494a2;
+    }
 
-  .text {
-    font-size: 16px;
-    line-height: 19.2px;
+    .is_clicked {
+      color: $white;
+    }
   }
 }
 
