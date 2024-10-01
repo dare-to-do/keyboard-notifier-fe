@@ -14,7 +14,4 @@
     "typescriptreact"
   ],
   "prettier.requireConfig": true,
-  "yaml.schemas": {
-    "https://www.artillery.io/schema.json": []
-  }
 }
