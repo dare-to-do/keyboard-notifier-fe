@@ -2,14 +2,24 @@
 @import '@/app/(styles)/_mixin.scss';
 
 .container {
-  width: 79px;
-  height: 48px;
-  border-radius: 8px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  width: 111px;
   align-items: center;
-  gap: 4px;
-  cursor: pointer;
+
+  .button {
+    width: 79px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .popover {
+  }
 
   &.clicked {
     background-color: $clicked-button-background-color; /* 클릭 시 배경색 */
@@ -24,12 +34,14 @@
 // 모바일
 @include mobile {
   .container {
-    width: 71px;
-    height: 40px;
+    .button {
+      width: 71px;
+      height: 40px;
 
-    .text {
-      font-size: 14px;
-      line-height: 16.8px;
+      .text {
+        font-size: 14px;
+        line-height: 16.8px;
+      }
     }
   }
 }
