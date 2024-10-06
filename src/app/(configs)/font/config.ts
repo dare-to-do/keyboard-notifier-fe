@@ -6,13 +6,12 @@ export const gmarketSans = localFont({
       path: './GmarketSansTTFBold.ttf',
       style: 'normal',
     },
-
     {
-      path: './GmarketSansTTFMedium.ttf',
+      path: './GmarketSansTTFLight.ttf',
       style: 'normal',
     },
     {
-      path: './GmarketSansTTFLight.ttf',
+      path: './GmarketSansTTFMedium.ttf',
       style: 'normal',
     },
   ],
