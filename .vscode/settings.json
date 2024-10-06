@@ -13,5 +13,5 @@
     "typescript",
     "typescriptreact"
   ],
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
 }
