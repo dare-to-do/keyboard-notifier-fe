@@ -1,5 +1,4 @@
-@import '@/app/(styles)/_variables.scss';
-@import '@/app/(styles)/_mixin.scss';
+@import '@/styles/variables.scss';
 
 .container {
   display: inline-block;
@@ -23,7 +22,7 @@
     }
 
     &.is_popover {
-      background-color: $clicked-button-background-color;
+      background-color: $gray-60;
     }
   }
 
@@ -33,7 +32,7 @@
     left: auto; // 왼쪽 끝에서 나타나지 않도록 설정
     right: 0; // 오른쪽 끝에서 나타나도록 설정
     border-radius: 4px;
-    background-color: #1c1c1f;
+    background-color: $gray-90;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,26 +45,11 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      color: #9494a2;
+      color: $gray-30;
     }
 
     .is_clicked {
-      color: $white;
-    }
-  }
-}
-
-// 모바일
-@include mobile {
-  .container {
-    .button {
-      width: 71px;
-      height: 40px;
-
-      .text {
-        font-size: 14px;
-        line-height: 16.8px;
-      }
+      color: white;
     }
   }
 }

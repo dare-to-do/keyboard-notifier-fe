@@ -1,3 +1,8 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v5.0.2 | 20191019
+   License: none (public domain)
+*/
+
 html,
 body,
 div,
@@ -69,6 +74,7 @@ figcaption,
 footer,
 header,
 hgroup,
+main,
 menu,
 nav,
 output,
@@ -95,14 +101,22 @@ figure,
 footer,
 header,
 hgroup,
+main,
 menu,
 nav,
 section {
   display: block;
 }
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+  display: none;
+}
 body {
   line-height: 1;
+  background-color: #000000;
+  color: #ffffff;
 }
+menu,
 ol,
 ul {
   list-style: none;

@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 
 import { gmarketSans } from '@/app/(configs)/font/config';
 import AppInitializer from '@/app/(initializer)/AppInitializer';
+import NavBar from '@/app/components/NavBar';
 
-import '@/app/(styles)/_reset.scss';
-import '@/app/(styles)/_global.scss';
+import '@/styles/index.scss';
 
 export const metadata: Metadata = {
   title: 'GiBi',
@@ -19,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={gmarketSans.className}>
       <body>
-        <AppInitializer>{children}</AppInitializer>{' '}
+        <AppInitializer>
+          <NavBar />
+          {children}
+        </AppInitializer>
       </body>
     </html>
   );
