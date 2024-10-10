@@ -3,13 +3,16 @@
 .container {
   display: inline-block;
   position: relative;
+  min-width: 129.45px;
 
   .button {
     width: auto;
+
     height: 24px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
+
     align-items: center;
     gap: 4px;
     cursor: pointer;
@@ -27,10 +30,8 @@
   }
 
   .popover {
+    width: max-content; // 내용에 따라 가로 길이 설정
     position: absolute; // 절대 위치로 설정하여 .button의 크기에 영향 주지 않음
-    top: 100%; // .button 바로 아래에 위치
-    left: auto; // 왼쪽 끝에서 나타나지 않도록 설정
-    right: 0; // 오른쪽 끝에서 나타나도록 설정
     border-radius: 4px;
     background-color: $gray-90;
     display: flex;
