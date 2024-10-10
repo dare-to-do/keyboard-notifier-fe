@@ -41,17 +41,17 @@ const DropdownSelect = ({ items }: ItemsProps) => {
         </span>
       </div>
       {isPopover && (
-        <div className={styles.popover}>
+        <ul className={styles.popover}>
           {items.map((item) => (
-            <div
+            <li
               className={`${styles.item} ${item.text === clickedItemText ? styles.is_clicked : ''}`}
               onClick={() => handleOnClickItem(item.text)}
               key={item.key}
             >
               {item.text}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );
