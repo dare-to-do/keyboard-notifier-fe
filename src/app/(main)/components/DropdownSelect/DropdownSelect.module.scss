@@ -1,0 +1,66 @@
+@import '@/styles/variables.scss';
+
+.container {
+  display: inline-block;
+  position: relative;
+  min-width: 129.45px;
+}
+
+.button {
+  width: auto;
+  height: 24px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 12px 8px 12px 12px;
+  margin-bottom: 5px;
+
+  &.is_open_dropdown {
+    background-color: $gray-60;
+  }
+}
+
+.button_text {
+  font-size: 16px;
+  line-height: 19.2px;
+}
+
+.dropdown {
+  width: max-content; // 내용에 따라 가로 길이 설정
+  position: absolute; // 절대 위치로 설정하여 .button의 크기에 영향 주지 않음
+  border-radius: 4px;
+  background-color: $gray-90;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 24px 16px 24px;
+  display: none; /* 기본적으로 숨김 */
+
+  &.show {
+    display: block;
+  }
+
+  &.hide {
+    display: none;
+  }
+}
+
+.dropdown_item {
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: $gray-30;
+  margin-bottom: 20px; // 아이템 간의 간격 추가
+
+  &:last-child {
+    margin-bottom: 0; // 마지막 아이템의 간격 제거
+  }
+}
+
+.dropdown_item_is_clicked {
+  color: white;
+}

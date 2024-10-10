@@ -14,4 +14,7 @@
     "typescriptreact"
   ],
   "prettier.requireConfig": true,
+  "cSpell.words": [
+    "accordian"
+  ],
 }
