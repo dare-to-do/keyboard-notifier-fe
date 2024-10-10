@@ -13,7 +13,7 @@ type ItemsProps = {
   items: Items[];
 };
 
-export default function DropdownSelect({ items }: ItemsProps) {
+const DropdownSelect = ({ items }: ItemsProps) => {
   const [isPopover, setIsPopover] = useState(false);
   const [clickedItemText, setClickedItemText] = useState(items[0].text);
 
@@ -55,4 +55,6 @@ export default function DropdownSelect({ items }: ItemsProps) {
       )}
     </div>
   );
-}
+};
+
+export default DropdownSelect;
