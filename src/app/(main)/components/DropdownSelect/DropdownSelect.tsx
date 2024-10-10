@@ -2,7 +2,11 @@
 
 import { useState } from 'react';
 
+import classNames from 'classnames/bind';
+
 import styles from './DropdownSelect.module.scss';
+
+const cx = classNames.bind(styles);
 
 type ItemsProps = {
   items: string[];
@@ -24,25 +28,20 @@ const DropdownSelect = ({ items }: ItemsProps) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div
-        className={`${styles.button} ${isOpenDropdown ? styles.is_open_dropdown : ''}`}
-        onClick={handleOnClickDropdown}
-      >
-        <span className={styles.text}>{clickedItemText}</span>
-        <span className={styles.icon}>
-          <img
-            src={isOpenDropdown ? '/assets/icons/accordian_fo.png' : '/assets/icons/accordian_en.png'}
-            alt={isOpenDropdown ? 'accordian_fo' : 'accordian_en'}
-            width="24px"
-            height="24px"
-          />
-        </span>
+    <div className={cx('container')}>
+      <div className={cx('button', { is_open_dropdown: isOpenDropdown })} onClick={handleOnClickDropdown}>
+        <span className={cx('button_text')}>{clickedItemText}</span>
+        <img
+          src={isOpenDropdown ? '/assets/icons/accordian_fo.png' : '/assets/icons/accordian_en.png'}
+          alt={isOpenDropdown ? 'accordian_fo' : 'accordian_en'}
+          width="24px"
+          height="24px"
+        />
       </div>
-      <ul className={`${styles.dropdown} ${isOpenDropdown ? styles.show : styles.hide}`}>
+      <ul className={cx('dropdown', { show: isOpenDropdown, hide: !isOpenDropdown })}>
         {items.map((item, index) => (
           <li
-            className={`${styles.item} ${item === clickedItemText ? styles.is_clicked_item : ''}`}
+            className={cx('dropdown_item', { dropdown_item_is_clicked: item === clickedItemText })}
             onClick={() => handleOnClickItem(item)}
             key={index}
           >
