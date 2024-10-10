@@ -6,7 +6,7 @@ import styles from './DropdownSelect.module.scss';
 
 type Items = {
   text: string;
-  value: string;
+  key: string;
 };
 
 type ItemsProps = {
@@ -46,7 +46,7 @@ const DropdownSelect = ({ items }: ItemsProps) => {
             <div
               className={`${styles.item} ${item.text === clickedItemText ? styles.is_clicked : ''}`}
               onClick={() => handleOnClickItem(item.text)}
-              key={item.value}
+              key={item.key}
             >
               {item.text}
             </div>
