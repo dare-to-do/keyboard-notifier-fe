@@ -30,29 +30,31 @@ const DropdownSelect = ({ items }: ItemsProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={`${styles.button} ${isOpenDropdown ? styles.is_popover : ''}`} onClick={handleOnClickDropdown}>
+      <div
+        className={`${styles.button} ${isOpenDropdown ? styles.is_open_dropdown : ''}`}
+        onClick={handleOnClickDropdown}
+      >
         <span className={styles.text}>{clickedItemText}</span>
         <span className={styles.icon}>
-          {isOpenDropdown ? (
-            <img src="/assets/icons/accordian_fo.png" alt="accordian_fo" width="24px" height="24px" />
-          ) : (
-            <img src="/assets/icons/accordian_en.png" alt="accordian_en" width="24px" height="24px" />
-          )}
+          <img
+            src={isOpenDropdown ? '/assets/icons/accordian_fo.png' : '/assets/icons/accordian_en.png'}
+            alt={isOpenDropdown ? 'accordian_fo' : 'accordian_en'}
+            width="24px"
+            height="24px"
+          />
         </span>
       </div>
-      {isOpenDropdown && (
-        <ul className={styles.popover}>
-          {items.map((item) => (
-            <li
-              className={`${styles.item} ${item.text === clickedItemText ? styles.is_clicked : ''}`}
-              onClick={() => handleOnClickItem(item.text)}
-              key={item.key}
-            >
-              {item.text}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul className={`${styles.dropdown} ${isOpenDropdown ? styles.show : styles.hide}`}>
+        {items.map((item) => (
+          <li
+            className={`${styles.item} ${item.text === clickedItemText ? styles.is_clicked_item : ''}`}
+            onClick={() => handleOnClickItem(item.text)}
+            key={item.key}
+          >
+            {item.text}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
