@@ -2,9 +2,6 @@
 
 import { useState } from 'react';
 
-import { FaCaretDown } from 'react-icons/fa';
-import { FaCaretUp } from 'react-icons/fa';
-
 import styles from './DropdownSelect.module.scss';
 
 type Items = {
@@ -35,7 +32,13 @@ export default function DropdownSelect({ items }: ItemsProps) {
     <div className={styles.container}>
       <div className={`${styles.button} ${isPopover ? styles.is_popover : ''}`} onClick={handleOnClickDropdown}>
         <span className={styles.text}>{clickedItemText}</span>
-        <span className={styles.icon}>{isPopover ? <FaCaretUp /> : <FaCaretDown />}</span>
+        <span className={styles.icon}>
+          {isPopover ? (
+            <img src="/assets/icons/accordian_fo.png" alt="accordian_fo" width="24px" height="24px" />
+          ) : (
+            <img src="/assets/icons/accordian_en.png" alt="accordian_en" width="24px" height="24px" />
+          )}
+        </span>
       </div>
       {isPopover && (
         <div className={styles.popover}>
