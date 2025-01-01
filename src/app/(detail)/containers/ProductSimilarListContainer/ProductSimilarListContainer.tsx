@@ -4,7 +4,7 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { getQueryClient } from '@/app/(configs)/query/config';
 import GBItemGallery from '@/app/(detail)/components/GBItemGallery';
-import { getProductSimilarListQueryObject } from '@/app/(queries)/productsQueries';
+import { getProductSimilarListQueryObject } from '@/app/(queries)/productQueries';
 
 type ProductSimilarListContainerProps = {
   productId: string;
