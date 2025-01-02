@@ -10,6 +10,12 @@
   justify-self: center;
 
   @include tablet-horizontal-detail-page {
-    width: 768px;
+    min-width: 768px;
+    padding-left: 25px;
+  }
+
+  @include tablet-vertical-detail-page {
+    min-width: 768px;
+    padding-left: 25px;
   }
 }

@@ -6,7 +6,12 @@
   flex-direction: column;
 
   @include tablet-horizontal-detail-page {
-    width: 768px;
+    min-width: 768px;
+    align-items: center;
+  }
+
+  @include tablet-vertical-detail-page {
+    min-width: 768px;
     align-items: center;
   }
 }

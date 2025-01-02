@@ -10,6 +10,10 @@
   @include tablet-horizontal-detail-page {
     min-width: 768px;
   }
+
+  @include tablet-vertical-detail-page {
+    min-width: 728px;
+  }
 }
 
 .title {

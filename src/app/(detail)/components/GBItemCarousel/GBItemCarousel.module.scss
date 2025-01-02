@@ -1,12 +1,17 @@
 @import '@/styles/mixins.scss';
 
 .container {
-  width: 584px;
+  max-width: 584px;
   height: 520px;
   overflow: hidden; /* 내용이 넘칠 경우 숨김 */
 
   @include tablet-horizontal-detail-page {
-    width: 768px;
+    max-width: 768px;
+    height: 360px;
+  }
+
+  @include tablet-vertical-detail-page {
+    max-width: 100%;
     height: 360px;
   }
 }
@@ -15,6 +20,11 @@
   border-radius: 16px;
 
   @include tablet-horizontal-detail-page {
+    height: 360px;
+  }
+
+  @include tablet-vertical-detail-page {
+    border-radius: none;
     height: 360px;
   }
 }

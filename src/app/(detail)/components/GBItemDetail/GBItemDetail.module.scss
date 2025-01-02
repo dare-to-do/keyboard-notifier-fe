@@ -10,4 +10,10 @@
     gap: 40px;
     align-items: center;
   }
+
+  @include tablet-vertical-detail-page {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
 }
