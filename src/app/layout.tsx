@@ -15,7 +15,7 @@ import NavBar from '@/app/components/NavBar';
 import '@/styles/index.scss';
 
 export const metadata: Metadata = {
-  title: 'GiBi',
+  title: 'Sokey',
   description: 'Group Buy Custom Keyboard',
 };
 
