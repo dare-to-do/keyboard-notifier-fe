@@ -1,9 +1,17 @@
+@import '@/styles/mixins.scss';
+
 .container {
   width: 50%;
   height: 520px;
   font-family: var(--font-pretendard-medium);
   display: flex;
   flex-direction: column;
+
+  @include tablet-horizontal-detail-page {
+    width: 768px;
+    height: 100%;
+    padding: 0px 20px 0px 20px;
+  }
 }
 
 .badges {
@@ -18,6 +26,11 @@
 .title {
   font-size: 28px;
   line-height: 33.6px;
+
+  @include tablet-horizontal-detail-page {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
 }
 
 .price {
@@ -32,11 +45,21 @@
   font-size: 40px;
   line-height: 56px;
   color: #54f451;
+
+  @include tablet-horizontal-detail-page {
+    font-size: 28px;
+    line-height: 33.6px;
+  }
 }
 
 .currency {
   font-size: 28px;
   line-height: 33.6px;
+
+  @include tablet-horizontal-detail-page {
+    font-size: 20px;
+    line-height: 26px;
+  }
 }
 
 .period {

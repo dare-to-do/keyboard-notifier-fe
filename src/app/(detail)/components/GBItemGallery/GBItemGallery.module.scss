@@ -1,5 +1,12 @@
+@import '@/styles/mixins.scss';
+
 .container {
-  max-width: 1128px;
+  min-width: 1128px;
   display: flex;
   flex-direction: column;
+
+  @include tablet-horizontal-detail-page {
+    width: 768px;
+    align-items: center;
+  }
 }
