@@ -25,9 +25,11 @@ const CategoryTabs = ({ selectedOption, options, onClick }: CategoryTabsProps) =
             className={cx('tab', {
               selected: selectedOption.type === option.type,
             })}
-            onClick={() => onClick(option)}
           >
-            <span>{option.label}</span>
+            <button onClick={() => onClick(option)}>
+              {option.icon && <img src={option.icon} alt={option.label} />}
+              <span>{option.label}</span>
+            </button>
           </li>
         ))}
       </ul>

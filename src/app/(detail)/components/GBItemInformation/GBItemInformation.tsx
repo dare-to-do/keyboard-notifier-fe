@@ -44,7 +44,7 @@ const GBItemInformation = ({
       <div className={cx('texts')}>
         <p className={cx('title')}>{name}</p>
         <p className={cx('price')}>
-          <span className={cx('value')}>{formatPrice(price, '')}</span>
+          <span className={cx('value')}>{formatPrice(price)}</span>
           <span className={cx('currency')}>{unit}</span>
         </p>
         <p className={cx('period')}>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</p>

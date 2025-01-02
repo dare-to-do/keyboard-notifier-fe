@@ -25,12 +25,23 @@
   line-height: 16.8px;
 }
 
+.price-wrap {
+  margin-bottom: 7px;
+}
+
 .price {
   font-size: 20px;
   font-weight: 700;
   color: $green-50;
   margin-bottom: 7px;
+  margin-right: 4px;
   line-height: 28px;
+}
+
+.unit {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 400;
 }
 
 .date {

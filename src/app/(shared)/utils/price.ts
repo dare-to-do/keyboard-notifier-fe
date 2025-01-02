@@ -1,3 +1,3 @@
-export const formatPrice = (price: number, unit: string) => {
-  return `${price.toLocaleString('ko-KR')} ${unit}`;
+export const formatPrice = (price: number) => {
+  return `${price.toLocaleString('ko-KR')}`;
 };
