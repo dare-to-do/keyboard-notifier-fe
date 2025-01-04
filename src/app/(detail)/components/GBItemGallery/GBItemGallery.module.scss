@@ -14,4 +14,8 @@
     min-width: 768px;
     align-items: center;
   }
+
+  @include mobile-detail-page {
+    min-width: 320px;
+  }
 }

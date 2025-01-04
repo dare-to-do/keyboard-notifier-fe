@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .main {
   display: flex;
   align-items: center;
@@ -5,4 +7,12 @@
   flex-direction: column;
   margin-top: 40px;
   gap: 60px;
+
+  @include tablet-vertical-detail-page {
+    margin-top: 8px;
+  }
+
+  @include mobile-detail-page {
+    margin-top: 8px;
+  }
 }

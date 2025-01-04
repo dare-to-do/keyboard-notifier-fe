@@ -16,4 +16,10 @@
     gap: 40px;
     align-items: center;
   }
+
+  @include mobile-detail-page {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
 }

@@ -11,11 +11,16 @@
 
   @include tablet-horizontal-detail-page {
     min-width: 768px;
-    padding-left: 25px;
+    justify-content: center;
   }
 
   @include tablet-vertical-detail-page {
     min-width: 768px;
-    padding-left: 25px;
+    justify-content: center;
+  }
+
+  @include mobile-detail-page {
+    min-width: 320px;
+    justify-content: center;
   }
 }

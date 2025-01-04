@@ -13,6 +13,10 @@
   cursor: pointer;
   position: relative;
   justify-content: space-between;
+
+  @include mobile-detail-page {
+    width: 280px;
+  }
 }
 
 .badge-wrap {
