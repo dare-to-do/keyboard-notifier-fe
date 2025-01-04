@@ -41,7 +41,7 @@ export type ProductStatusOptionsType = {
 export const PRODUCT_CATEGORY_NAME = {
   [ProductCategoryTypeEnum.ALL]: '전체',
   [ProductCategoryTypeEnum.KEYBOARD]: '키보드',
-  [ProductCategoryTypeEnum.KEY_CAP]: '키캡',
+  [ProductCategoryTypeEnum.KEYCAP]: '키캡',
   [ProductCategoryTypeEnum.KIT]: '키트',
   [ProductCategoryTypeEnum.STABILIZER]: '스테빌라이저',
   [ProductCategoryTypeEnum.SWITCH]: '스위치',
@@ -55,28 +55,34 @@ export const PRODUCT_CATEGORY_OPTIONS = [
     label: '전체',
   },
   {
-    type: ProductCategoryTypeEnum.KEYBOARD,
-    label: '키보드',
-  },
-  {
-    type: ProductCategoryTypeEnum.KEY_CAP,
-    label: '키캡',
-  },
-  {
     type: ProductCategoryTypeEnum.KIT,
     label: '키트',
+    icon: '/assets/icons/kit.svg',
   },
   {
-    type: ProductCategoryTypeEnum.STABILIZER,
-    label: '스테빌라이저',
+    type: ProductCategoryTypeEnum.KEYBOARD,
+    label: '키보드',
+    icon: '/assets/icons/keyboard.svg',
   },
   {
     type: ProductCategoryTypeEnum.SWITCH,
     label: '스위치',
+    icon: '/assets/icons/switch.svg',
+  },
+  {
+    type: ProductCategoryTypeEnum.KEYCAP,
+    label: '키캡',
+    icon: '/assets/icons/keycap.svg',
+  },
+  {
+    type: ProductCategoryTypeEnum.STABILIZER,
+    label: '스테빌라이저',
+    icon: '/assets/icons/stabilizer.svg',
   },
   {
     type: ProductCategoryTypeEnum.PARTS,
     label: '파츠',
+    icon: '/assets/icons/parts.svg',
   },
   {
     type: ProductCategoryTypeEnum.ETC,
@@ -87,6 +93,7 @@ export const PRODUCT_CATEGORY_OPTIONS = [
 export type ProductCategoryOptionsType = {
   type: ProductCategoryEnumType;
   label: string;
+  icon?: string;
 };
 
 export const FILTER_OPTIONS = [

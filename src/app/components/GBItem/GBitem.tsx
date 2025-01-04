@@ -47,7 +47,10 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
       </div>
       <div>
         <h3 className={cx('name')}>{name}</h3>
-        <p className={cx('price')}>{formatPrice(price, unit)}</p>
+        <div className={cx('price-wrap')}>
+          <span className={cx('price')}>{formatPrice(price)}</span>
+          <span className={cx('unit')}>{unit}</span>
+        </div>
         <p className={cx('date')}>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</p>
       </div>
       <Notification />

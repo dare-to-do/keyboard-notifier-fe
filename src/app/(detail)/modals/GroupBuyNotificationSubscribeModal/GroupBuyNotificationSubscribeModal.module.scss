@@ -1,4 +1,5 @@
 @import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
 
 .modal-container {
   display: flex;
@@ -14,6 +15,10 @@
   border: none;
   flex-direction: column;
   color: white;
+
+  @include mobile-detail-page {
+    width: 280px;
+  }
 }
 
 .modal-header {

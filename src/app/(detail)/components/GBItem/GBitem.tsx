@@ -47,7 +47,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
       <div className={cx('content-wrap')}>
         <div className={cx('title')}>{name}</div>
         <div className={cx('price')}>
-          <span className={cx('value')}>{formatPrice(price, '')}</span>
+          <span className={cx('value')}>{formatPrice(price)}</span>
           <span className={cx('currency')}>{unit}</span>
         </div>
         <div className={cx('date')}>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</div>

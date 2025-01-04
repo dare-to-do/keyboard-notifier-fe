@@ -1,12 +1,16 @@
 @import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
 
 .container {
+  font-family: var(--font-pretendard-semi-bold);
   padding: 40px 0;
   position: sticky;
   top: 0;
   align-items: center;
   justify-content: center;
   z-index: 1;
+  display: flex;
+  width: 100%;
 }
 
 .category-tabs {
@@ -17,6 +21,10 @@
     0px -3px 8px 0px rgba(0, 0, 0, 0.08),
     0px 6px 10px 4px rgba(0, 0, 0, 0.1),
     0px 2px 3px 0px rgba(0, 0, 0, 0.18);
+
+  @include mobile {
+    background-color: transparent;
+  }
 }
 
 .tab {
@@ -25,7 +33,6 @@
   display: flex;
   align-items: center;
   background-color: #2c2c2c;
-  padding: 16px 24px 16px 22px;
   border-radius: 6px;
   cursor: pointer;
   color: #d1d1d1;
@@ -34,5 +41,37 @@
   &.selected {
     background-color: $gray-50;
     color: #ffffff;
+  }
+
+  img {
+    margin-right: 8px;
+  }
+
+  button {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    padding: 16px 24px 16px 22px;
+    font-size: 20px;
+
+    @include tablet {
+      padding: 12px 20px 12px 18px;
+      font-size: 16px;
+    }
+
+    @include mobile {
+      padding: 10px 14px 10px 12px;
+      font-size: 14px;
+    }
+  }
+
+  @include mobile {
+    margin-right: 8px;
   }
 }

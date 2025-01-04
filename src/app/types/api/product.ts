@@ -14,7 +14,7 @@ export const ProductCategoryTypeEnum = {
   KIT: 'KIT',
   KEYBOARD: 'KEYBOARD',
   SWITCH: 'SWITCH',
-  KEY_CAP: 'KEYCAP',
+  KEYCAP: 'KEYCAP',
   STABILIZER: 'STABILIZER',
   PARTS: 'PARTS',
   ETC: 'ETC',

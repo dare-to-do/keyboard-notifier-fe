@@ -1,23 +1,67 @@
+@import '@/styles/mixins.scss';
+
 .container {
   width: 50%;
   height: 520px;
   font-family: var(--font-pretendard-medium);
   display: flex;
   flex-direction: column;
+
+  @include tablet-horizontal-detail-page {
+    min-width: 768px;
+    height: 100%;
+    padding: 0px 20px 0px 20px;
+  }
+
+  @include tablet-vertical-detail-page {
+    min-width: 728px;
+    height: 100%;
+  }
+
+  @include mobile-detail-page {
+    max-width: 360px;
+    height: 100%;
+    align-items: center;
+  }
 }
 
 .badges {
   display: flex;
   gap: 6px;
+
+  @include mobile-detail-page {
+    width: 87%;
+    justify-content: flex-start;
+  }
 }
 
 .texts {
   margin-top: 20px;
+
+  @include mobile-detail-page {
+    width: 87%;
+    justify-content: flex-start;
+  }
 }
 
 .title {
   font-size: 28px;
   line-height: 33.6px;
+
+  @include tablet-horizontal-detail-page {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+
+  @include tablet-vertical-detail-page {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+
+  @include mobile-detail-page {
+    font-size: 20px;
+    line-height: 26px;
+  }
 }
 
 .price {
@@ -32,11 +76,41 @@
   font-size: 40px;
   line-height: 56px;
   color: #54f451;
+
+  @include tablet-horizontal-detail-page {
+    font-size: 28px;
+    line-height: 33.6px;
+  }
+
+  @include tablet-vertical-detail-page {
+    font-size: 28px;
+    line-height: 33.6px;
+  }
+
+  @include mobile-detail-page {
+    font-size: 28px;
+    line-height: 33.6px;
+  }
 }
 
 .currency {
   font-size: 28px;
   line-height: 33.6px;
+
+  @include tablet-horizontal-detail-page {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  @include tablet-vertical-detail-page {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  @include mobile-detail-page {
+    font-size: 20px;
+    line-height: 26px;
+  }
 }
 
 .period {
@@ -50,4 +124,16 @@
   margin-top: 56px;
   display: flex;
   gap: 20px;
+
+  @include tablet-horizontal-detail-page {
+    margin-top: 40px;
+  }
+
+  @include tablet-vertical-detail-page {
+    margin-top: 28px;
+  }
+
+  @include mobile-detail-page {
+    margin-top: 28px;
+  }
 }
