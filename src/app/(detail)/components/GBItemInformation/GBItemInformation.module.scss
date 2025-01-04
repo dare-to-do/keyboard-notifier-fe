@@ -37,6 +37,11 @@
 
 .texts {
   margin-top: 20px;
+
+  @include mobile-detail-page {
+    width: 87%;
+    justify-content: flex-start;
+  }
 }
 
 .title {
