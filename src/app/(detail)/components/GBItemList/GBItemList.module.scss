@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .list-container {
   padding: 20px 0 80px 0;
   display: flex;
@@ -6,4 +8,19 @@
   column-gap: 24px;
   align-items: center;
   justify-self: center;
+
+  @include tablet-horizontal-detail-page {
+    min-width: 768px;
+    justify-content: center;
+  }
+
+  @include tablet-vertical-detail-page {
+    min-width: 768px;
+    justify-content: center;
+  }
+
+  @include mobile-detail-page {
+    min-width: 320px;
+    justify-content: center;
+  }
 }

@@ -1,5 +1,25 @@
+@import '@/styles/mixins.scss';
+
 .container {
-  max-width: 1128px;
+  width: 1128px;
   display: flex;
   gap: 64px;
+
+  @include tablet-horizontal-detail-page {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  @include tablet-vertical-detail-page {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  @include mobile-detail-page {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
 }

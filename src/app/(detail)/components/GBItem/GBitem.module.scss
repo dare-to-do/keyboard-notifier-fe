@@ -1,4 +1,5 @@
 @import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
 
 .list {
   background-image: url('/assets/images/gb-thumbnail.png');
@@ -12,6 +13,10 @@
   cursor: pointer;
   position: relative;
   justify-content: space-between;
+
+  @include mobile-detail-page {
+    width: 280px;
+  }
 }
 
 .badge-wrap {

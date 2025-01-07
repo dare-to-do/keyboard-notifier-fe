@@ -7,7 +7,7 @@ import classNames from 'classnames/bind';
 
 import GBItemCarousel from '@/app/(detail)/components/GBItemCarousel';
 import GBItemInformation from '@/app/(detail)/components/GBItemInformation';
-import { getProductsDetailQueryObject } from '@/app/(queries)/productsQueries';
+import { getProductDetailQueryObject } from '@/app/(queries)/productQueries';
 
 import styles from './GBItemDetail.module.scss';
 
@@ -16,7 +16,7 @@ const cx = classNames.bind(styles);
 const GBItemDetail = () => {
   const pathname = usePathname();
 
-  const { data } = useSuspenseQuery(getProductsDetailQueryObject(pathname.replace('/', '')));
+  const { data } = useSuspenseQuery(getProductDetailQueryObject(pathname.replace('/', '')));
 
   if (!data) {
     return null;

@@ -15,3 +15,21 @@
     @content;
   }
 }
+
+@mixin tablet-horizontal-detail-page {
+  @media (min-width: 768px) and (max-width: 1126px) {
+    @content;
+  }
+}
+
+@mixin tablet-vertical-detail-page {
+  @media (min-width: 360px) and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin mobile-detail-page {
+  @media (max-width: 359px) {
+    @content;
+  }
+}

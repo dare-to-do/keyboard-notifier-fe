@@ -1,9 +1,24 @@
+@import '@/styles/mixins.scss';
+
 .container {
   min-width: 1128px;
   height: 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include tablet-horizontal-detail-page {
+    min-width: 768px;
+  }
+
+  @include tablet-vertical-detail-page {
+    min-width: 728px;
+  }
+
+  @include mobile-detail-page {
+    min-width: 0px;
+    margin: 0 5px 0 10px;
+  }
 }
 
 .title {

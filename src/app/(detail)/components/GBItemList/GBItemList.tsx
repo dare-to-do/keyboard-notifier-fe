@@ -6,7 +6,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
 
 import GBItem from '@/app/(detail)/components/GBItem';
-import { getProductSimilarListQueryObject } from '@/app/(queries)/productsQueries';
+import { getProductSimilarListQueryObject } from '@/app/(queries)/productQueries';
 
 import styles from './GBItemList.module.scss';
 

@@ -1,5 +1,21 @@
+@import '@/styles/mixins.scss';
+
 .container {
-  max-width: 1128px;
+  min-width: 1128px;
   display: flex;
   flex-direction: column;
+
+  @include tablet-horizontal-detail-page {
+    min-width: 768px;
+    align-items: center;
+  }
+
+  @include tablet-vertical-detail-page {
+    min-width: 768px;
+    align-items: center;
+  }
+
+  @include mobile-detail-page {
+    min-width: 320px;
+  }
 }

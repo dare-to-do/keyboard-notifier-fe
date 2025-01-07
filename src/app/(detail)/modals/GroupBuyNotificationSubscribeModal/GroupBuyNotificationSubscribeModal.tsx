@@ -1,12 +1,10 @@
 import { useRef } from 'react';
 
-import { useMutation } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
-import ky from 'ky';
 
 import CheckBox from '@/app/(detail)/components/CheckBox';
 import useGroupByNotificationSubscribeModal from '@/app/(detail)/hooks/useGroupByNotificationSubscribeModal';
-import { SOKEY_API_URL } from '@/app/(shared)/apiUrl';
+import { useNotificationMutate } from '@/app/(mutates)/notificationMutate';
 import { formatPhoneNumber } from '@/app/(shared)/utils/formatPhoneNumber';
 import { isValidEmail } from '@/app/(shared)/utils/isValidEmail';
 import { isValidPhoneNumber } from '@/app/(shared)/utils/isValidPhoneNumber';
@@ -34,26 +32,7 @@ const GroupBuyNotificationSubscribeModal = () => {
   } = useGroupByNotificationSubscribeModal(phoneInputRef, emailInputRef);
 
   const { openModal, closeModal } = useModalStore();
-
-  // 공제 알림 신청 뮤테이션
-  const { mutate: notificationRequestMutate } = useMutation<void, Error, { phone?: string; email?: string }>({
-    mutationFn: ({ phone, email }) => {
-      return ky
-        .post(`${SOKEY_API_URL.ALARM}`, {
-          json: {
-            phone: phone,
-            email: email,
-          },
-        })
-        .json();
-    },
-    onSuccess: () => {
-      openModal('success-notification-alert-modal');
-    },
-    onError: (error) => {
-      console.error('Error:', error);
-    },
-  });
+  const { mutate: notificationMutate } = useNotificationMutate();
 
   // 오픈 알림 신청 모달 닫기
   const onClickCloseNotificationSubscribeModal = () => {
@@ -77,7 +56,17 @@ const GroupBuyNotificationSubscribeModal = () => {
 
     // 검증된 전화번호와 이메일 중 하나만 입력되었다면 뮤테이션 실행
     if ((phone && isPhoneValid) || (email && isEmailValid)) {
-      notificationRequestMutate({ phone, email });
+      notificationMutate(
+        { phone, email },
+        {
+          onSuccess: () => {
+            openModal('success-notification-alert-modal');
+          },
+          onError: (error) => {
+            console.error('Error:', error);
+          },
+        },
+      );
     } else {
       if (phone && !isPhoneValid) {
         alert('전화번호를 형식에 맞게 입력해주세요.');
