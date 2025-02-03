@@ -9,9 +9,6 @@ import GBItemCarousel from '@/app/(detail)/components/GBItemCarousel';
 import GBItemInformation from '@/app/(detail)/components/GBItemInformation';
 import { getProductsDetailQueryObject } from '@/app/(queries)/productsQueries';
 
-import useSaveProductId from '../../hooks/useSaveProductId';
-import useUpdateProductOptions from '../../hooks/useUpdateProductOptions';
-
 import styles from './GBItemDetail.module.scss';
 
 const cx = classNames.bind(styles);
@@ -20,9 +17,6 @@ const GBItemDetail = () => {
   const { id: productId } = useParams();
 
   const { data } = useSuspenseQuery(getProductsDetailQueryObject(productId as string));
-
-  useSaveProductId();
-  useUpdateProductOptions(data.data.productStatus, data.data.productType);
 
   if (!data) {
     return null;

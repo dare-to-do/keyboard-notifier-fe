@@ -20,8 +20,6 @@ import DropdownSelect from '@/app/components/DropdownSelect';
 import GBItemCount from '@/app/components/GBItemCount/GBItemCount';
 import GBItemList from '@/app/components/GBItemList';
 import ProductsBanner from '@/app/components/ProductBanner';
-import { useProductCategoryOption } from '@/app/store/useProductCategoryOption';
-import { useProductStatusOption } from '@/app/store/useProductStatusOption';
 import { ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
 
 import styles from './ProductMain.module.scss';
@@ -29,8 +27,10 @@ import styles from './ProductMain.module.scss';
 const cx = classNames.bind(styles);
 
 const ProductMain = () => {
-  const { productCategoryOption, setProductCategoryOption } = useProductCategoryOption();
-  const { productStatusOption, setProductStatusOption } = useProductStatusOption();
+  const [productCategoryOption, setProductCategoryOption] = useState(
+    PRODUCT_CATEGORY_OPTIONS[0] as ProductCategoryOptionsType,
+  );
+  const [productStatusOption, setProductStatusOption] = useState(PRODUCT_STATUS_OPTIONS[0]);
   const [filterOption, setFilterOption] = useState<FilterOptionsType>(FILTER_OPTIONS[0]);
 
   const { data: defaultData } = useQuery(

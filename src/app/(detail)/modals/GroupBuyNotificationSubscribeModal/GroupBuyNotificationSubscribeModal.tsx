@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 
+import { useParams } from 'next/navigation';
+
 import { useMutation } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
 import ky from 'ky';
@@ -9,8 +11,6 @@ import useGroupByNotificationSubscribeModal from '@/app/(detail)/hooks/useGroupB
 import { SOKEY_DOMAIN } from '@/app/(shared)/apiUrl';
 import { isValidEmail } from '@/app/(shared)/utils/isValidEmail';
 import { useModalStore } from '@/app/store/useModalStore';
-
-import useProductId from '../../store/useProductIdStore';
 
 import styles from './GroupBuyNotificationSubscribeModal.module.scss';
 
@@ -24,7 +24,7 @@ const GroupBuyNotificationSubscribeModal = () => {
 
   const { openModal, closeModal } = useModalStore();
 
-  const { productId } = useProductId();
+  const { id: productId } = useParams();
 
   // 공제 알림 신청 뮤테이션
   const { mutate: notificationRequestMutate } = useMutation<void, Error, { email?: string }>({
