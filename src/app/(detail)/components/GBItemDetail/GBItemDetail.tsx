@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
@@ -17,9 +17,9 @@ import styles from './GBItemDetail.module.scss';
 const cx = classNames.bind(styles);
 
 const GBItemDetail = () => {
-  const pathname = usePathname();
+  const { id: productId } = useParams();
 
-  const { data } = useSuspenseQuery(getProductsDetailQueryObject(pathname.replace('/', '')));
+  const { data } = useSuspenseQuery(getProductsDetailQueryObject(productId as string));
 
   useSaveProductId();
   useUpdateProductOptions(data.data.productStatus, data.data.productType);
