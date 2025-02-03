@@ -6,7 +6,7 @@ import ky from 'ky';
 
 import CheckBox from '@/app/(detail)/components/CheckBox';
 import useGroupByNotificationSubscribeModal from '@/app/(detail)/hooks/useGroupByNotificationSubscribeModal';
-import { SOKEY_API } from '@/app/(shared)/apiUrl';
+import { SOKEY_DOMAIN } from '@/app/(shared)/apiUrl';
 import { isValidEmail } from '@/app/(shared)/utils/isValidEmail';
 import { useModalStore } from '@/app/store/useModalStore';
 
@@ -30,7 +30,7 @@ const GroupBuyNotificationSubscribeModal = () => {
   const { mutate: notificationRequestMutate } = useMutation<void, Error, { email?: string }>({
     mutationFn: ({ email }) => {
       return ky
-        .post(`${SOKEY_API}/${productId}/alarm`, {
+        .post(`${SOKEY_DOMAIN}/products/${productId}/alarm`, {
           json: {
             email: email,
           },
