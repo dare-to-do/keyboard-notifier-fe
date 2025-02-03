@@ -18,7 +18,14 @@ const NavBar = () => {
   return (
     <nav className={cx('navbar')}>
       <div className={cx('container')}>
-        <img src="/assets/images/sokey-logo.svg" alt="logo" width="98px" height="24px" onClick={moveToMainPage} />
+        <img
+          className={cx('logo')}
+          src="/assets/images/sokey-logo.svg"
+          alt="logo"
+          width="98px"
+          height="24px"
+          onClick={moveToMainPage}
+        />
       </div>
     </nav>
   );
