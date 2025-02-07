@@ -1,6 +1,8 @@
 'use client';
 import classNames from 'classnames/bind';
 
+import { ProductCategoryOptionsType } from '@/app/(shared)/constants';
+import EmptyProduct from '@/app/components/EmptyProduct';
 import GBItem from '@/app/components/GBItem';
 import { Product } from '@/app/types/api/product';
 
@@ -10,11 +12,12 @@ const cx = classNames.bind(styles);
 
 type GBItemListProps = {
   productList?: Product[];
+  onHandleProductCategoryOptions: (option: ProductCategoryOptionsType) => void;
 };
 
-const GBItemList = ({ productList }: GBItemListProps) => {
-  if (!productList) {
-    return null;
+const GBItemList = ({ productList, onHandleProductCategoryOptions }: GBItemListProps) => {
+  if (!productList || productList.length === 0) {
+    return <EmptyProduct onHandleProductCategoryOptions={onHandleProductCategoryOptions} />;
   }
 
   return (

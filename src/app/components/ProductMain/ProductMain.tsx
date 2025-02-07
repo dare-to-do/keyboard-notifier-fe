@@ -82,7 +82,7 @@ const ProductMain = () => {
             />
             <DropdownSelect selectedOption={filterOption} options={FILTER_OPTIONS} onClick={handleFilterOptions} />
           </div>
-          <GBItemList productList={productList} />
+          <GBItemList productList={productList} onHandleProductCategoryOptions={handleProductCategoryOptions} />
         </div>
         <ScrollToTop />
       </div>

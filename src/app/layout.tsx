@@ -17,6 +17,16 @@ import '@/styles/index.scss';
 export const metadata: Metadata = {
   title: 'Sokey',
   description: 'Group Buy Custom Keyboard',
+  openGraph: {
+    images: [
+      {
+        url: '/assets/images/thumbnail.png',
+        width: 1600,
+        height: 800,
+        alt: 'Sokey',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
