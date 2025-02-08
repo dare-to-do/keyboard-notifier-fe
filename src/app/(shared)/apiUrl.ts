@@ -1,6 +1,4 @@
-const SOKEY_DOMAIN = 'https://api.sokey.kr/api';
-
-export const SOKEY_API = 'https://api.sokey.kr';
+export const SOKEY_DOMAIN = 'https://api.sokey.kr/api';
 
 export const SOKEY_API_URL = {
   // query string
