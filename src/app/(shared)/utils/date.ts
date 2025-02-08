@@ -5,5 +5,5 @@ export const formatDate = (date: string) => {
     return '';
   }
 
-  return dayjs(date).format('YYYY.MM');
+  return dayjs(date).format('YYYY.MM.DD');
 };

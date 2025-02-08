@@ -58,7 +58,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
           <span className={cx('price')}>{formatPrice(price)}</span>
           <span className={cx('unit')}>{unit}</span>
         </div>
-        <p className={cx('date')}>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</p>
+        <p className={cx('date')}>{`${formatDate(startDate)} ~ ${formatDate(endDate)}`}</p>
       </div>
       {isHover && <Notification />}
     </li>
