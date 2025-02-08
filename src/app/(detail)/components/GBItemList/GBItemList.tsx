@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react';
 
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
@@ -17,9 +17,13 @@ import styles from './GBItemList.module.scss';
 const cx = classNames.bind(styles);
 
 const GBItemList = () => {
-  const pathname = usePathname();
+  const { id: productId } = useParams();
 
-  const { data } = useSuspenseQuery(getProductSimilarListQueryObject(pathname.replace('/', '')));
+  const { data } = useSuspenseQuery(getProductSimilarListQueryObject(productId as string));
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <HydrationBoundary>
