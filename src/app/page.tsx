@@ -6,6 +6,7 @@ import classNames from 'classnames/bind';
 import { getQueryClient } from '@/app/(configs)/query/config';
 import { getProductsQueryObject } from '@/app/(queries)/productsQueries';
 import ProductMain from '@/app/components/ProductMain/ProductMain';
+import { ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
 
 import styles from './page.module.scss';
 import 'slick-carousel/slick/slick.css';
@@ -16,13 +17,30 @@ const cx = classNames.bind(styles);
 export default async function Home() {
   const queryClient = getQueryClient();
 
+  let dehydratedState = {};
+
   try {
-    await queryClient.prefetchQuery(getProductsQueryObject());
+    await queryClient.prefetchQuery(
+      getProductsQueryObject({
+        productStatus: ProductStatusEnum.ALL,
+        productType: ProductCategoryTypeEnum.ALL,
+        sortBy: SortByEnum.NEWEST,
+      }),
+    );
+
+    await queryClient.prefetchQuery(
+      getProductsQueryObject({
+        productStatus: ProductStatusEnum.IN_PROGRESS,
+        productType: ProductCategoryTypeEnum.ALL,
+        sortBy: SortByEnum.NEWEST,
+      }),
+    );
+
+    dehydratedState = dehydrate(queryClient);
+    queryClient.clear();
   } catch (error) {
     console.error(error);
   }
-
-  const dehydratedState = dehydrate(queryClient);
 
   return (
     <HydrationBoundary state={dehydratedState}>

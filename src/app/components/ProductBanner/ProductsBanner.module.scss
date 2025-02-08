@@ -75,3 +75,27 @@
     height: 52px;
   }
 }
+
+.contoller {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+
+  button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  span {
+    padding-bottom: 2px;
+  }
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+}
