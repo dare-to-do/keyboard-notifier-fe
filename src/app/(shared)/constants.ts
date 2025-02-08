@@ -49,7 +49,7 @@ export const PRODUCT_CATEGORY_NAME = {
   [ProductCategoryTypeEnum.ETC]: '기타',
 };
 
-export const PRODUCT_CATEGORY_OPTIONS = [
+export const PRODUCT_CATEGORY_OPTIONS: ProductCategoryOptionsType[] = [
   {
     type: ProductCategoryTypeEnum.ALL,
     label: '전체',

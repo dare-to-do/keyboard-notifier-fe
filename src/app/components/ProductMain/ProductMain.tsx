@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { useSearchParams } from 'next/navigation';
+
 import { useQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
 
@@ -27,10 +29,19 @@ import styles from './ProductMain.module.scss';
 const cx = classNames.bind(styles);
 
 const ProductMain = () => {
-  const [productCategoryOption, setProductCategoryOption] = useState(
-    PRODUCT_CATEGORY_OPTIONS[0] as ProductCategoryOptionsType,
-  );
-  const [productStatusOption, setProductStatusOption] = useState(PRODUCT_STATUS_OPTIONS[0]);
+  const searchParams = useSearchParams();
+
+  const categoryType = searchParams.get('categoryType');
+  const status = searchParams.get('status');
+
+  const initialCategoryOption =
+    PRODUCT_CATEGORY_OPTIONS.find((option) => option.type === categoryType) || PRODUCT_CATEGORY_OPTIONS[0];
+
+  const initialStatusOption =
+    PRODUCT_STATUS_OPTIONS.find((option) => option.type === status) || PRODUCT_STATUS_OPTIONS[0];
+
+  const [productCategoryOption, setProductCategoryOption] = useState(initialCategoryOption);
+  const [productStatusOption, setProductStatusOption] = useState(initialStatusOption);
   const [filterOption, setFilterOption] = useState<FilterOptionsType>(FILTER_OPTIONS[0]);
 
   const { data: defaultData } = useQuery(
