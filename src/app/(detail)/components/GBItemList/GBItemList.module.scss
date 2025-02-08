@@ -1,9 +1,22 @@
+@import '@/styles/mixins.scss';
+
 .list-container {
+  width: 100%;
   padding: 20px 0 80px 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   flex-wrap: wrap;
   row-gap: 32px;
   column-gap: 24px;
   align-items: center;
-  justify-self: center;
+  justify-content: center;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    padding-top: 16px;
+  }
 }

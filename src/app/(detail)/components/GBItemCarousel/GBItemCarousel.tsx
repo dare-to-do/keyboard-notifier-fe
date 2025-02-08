@@ -14,13 +14,23 @@ type GBItemCarouselProps = {
 
 const GBItemCarousel = ({ imageUrlList }: GBItemCarouselProps) => {
   return (
-    <section className={cx('container')}>
-      <Slider slidesToShow={1} centerMode centerPadding="0px" arrows={false}>
+    <div className={cx('slider-container')}>
+      <Slider
+        className={cx('container')}
+        slidesToShow={1}
+        centerMode
+        centerPadding="0px"
+        arrows={false}
+        dots={false}
+        speed={500}
+        autoplay
+        autoplaySpeed={3000}
+      >
         {imageUrlList.map((url, index) => (
-          <img className={cx('image')} src={url} key={index} alt="image" width="584px" height="520px" />
+          <img className={cx('image')} src={url} key={index} alt="image" />
         ))}
       </Slider>
-    </section>
+    </div>
   );
 };
 
