@@ -1,5 +1,16 @@
+@import '@/styles/mixins.scss';
+
 .container {
+  position: relative;
   max-width: 1128px;
   display: flex;
   flex-direction: column;
+
+  @include tablet {
+    padding: 0 20px;
+  }
+
+  @include mobile {
+    padding: 0 20px;
+  }
 }

@@ -1,7 +1,7 @@
 @import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
 
 .item {
-  background-image: url('/assets/images/gb-thumbnail.png');
   background-size: cover;
   padding: 20px;
   border-radius: 12px;
@@ -12,6 +12,17 @@
   cursor: pointer;
   position: relative;
   justify-content: space-between;
+
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @include tablet {
+    height: 240px;
+  }
+
+  @include mobile {
+    height: 200px;
+  }
 }
 
 .badge-wrap {
@@ -26,8 +37,10 @@
 
 .title {
   font-size: 14px;
-  line-height: 16.8px;
+  font-weight: 500;
+  line-height: 120%;
   margin-bottom: 12px;
+  line-height: 16.8px;
 }
 
 .price {
@@ -36,10 +49,12 @@
 }
 
 .value {
-  font-family: var(--font-gmarket-sans-bold);
   font-size: 20px;
-  line-height: 28px;
+  font-weight: 700;
   color: $green-50;
+  margin-bottom: 7px;
+  margin-right: 4px;
+  line-height: 28px;
 }
 
 .currency {
@@ -48,7 +63,6 @@
 }
 
 .date {
-  font-family: var(--font-pretendard-semi-bold);
   font-size: 12px;
-  line-height: 14.4px;
+  font-weight: 600;
 }
