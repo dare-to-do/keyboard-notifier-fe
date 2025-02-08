@@ -3,6 +3,8 @@
 import { useState } from 'react';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
+
 import classNames from 'classnames/bind';
 
 import ScrollToTop from '@/app/(detail)/components/ScrollToTop';
@@ -20,8 +22,6 @@ import DropdownSelect from '@/app/components/DropdownSelect';
 import GBItemCount from '@/app/components/GBItemCount/GBItemCount';
 import GBItemList from '@/app/components/GBItemList';
 import ProductsBanner from '@/app/components/ProductBanner';
-import { useProductCategoryOption } from '@/app/store/useProductCategoryOption';
-import { useProductStatusOption } from '@/app/store/useProductStatusOption';
 import { ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
 
 import styles from './ProductMain.module.scss';
@@ -29,8 +29,19 @@ import styles from './ProductMain.module.scss';
 const cx = classNames.bind(styles);
 
 const ProductMain = () => {
-  const { productCategoryOption, setProductCategoryOption } = useProductCategoryOption();
-  const { productStatusOption, setProductStatusOption } = useProductStatusOption();
+  const searchParams = useSearchParams();
+
+  const categoryType = searchParams.get('categoryType');
+  const status = searchParams.get('status');
+
+  const initialCategoryOption =
+    PRODUCT_CATEGORY_OPTIONS.find((option) => option.type === categoryType) || PRODUCT_CATEGORY_OPTIONS[0];
+
+  const initialStatusOption =
+    PRODUCT_STATUS_OPTIONS.find((option) => option.type === status) || PRODUCT_STATUS_OPTIONS[0];
+
+  const [productCategoryOption, setProductCategoryOption] = useState(initialCategoryOption);
+  const [productStatusOption, setProductStatusOption] = useState(initialStatusOption);
   const [filterOption, setFilterOption] = useState<FilterOptionsType>(FILTER_OPTIONS[0]);
 
   const { data: defaultData } = useSuspenseQuery(

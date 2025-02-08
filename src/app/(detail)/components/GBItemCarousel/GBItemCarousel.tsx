@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import Slider from 'react-slick';
 
 import styles from './GBItemCarousel.module.scss';
+import 'slick-carousel/slick/slick.css';
 
 const cx = classNames.bind(styles);
 
@@ -12,31 +13,24 @@ type GBItemCarouselProps = {
 };
 
 const GBItemCarousel = ({ imageUrlList }: GBItemCarouselProps) => {
-  const settings = {
-    arrows: false,
-    dots: true,
-    appendDots: (dots: React.ReactNode) => (
-      <div
-        style={{
-          bottom: '20px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '50%',
-        }}
-      >
-        <ul style={{ margin: '0px' }}> {dots} </ul>
-      </div>
-    ),
-  };
-
   return (
-    <section className={cx('container')}>
-      <Slider {...settings}>
+    <div className={cx('slider-container')}>
+      <Slider
+        className={cx('container')}
+        slidesToShow={1}
+        centerMode
+        centerPadding="0px"
+        arrows={false}
+        dots={false}
+        speed={500}
+        autoplay
+        autoplaySpeed={3000}
+      >
         {imageUrlList.map((url, index) => (
-          <img className={cx('image')} src={url} key={index} alt="image" width="584px" height="520px" />
+          <img className={cx('image')} src={url} key={index} alt="image" />
         ))}
       </Slider>
-    </section>
+    </div>
   );
 };
 

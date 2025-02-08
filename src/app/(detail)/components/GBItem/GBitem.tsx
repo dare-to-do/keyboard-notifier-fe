@@ -28,7 +28,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
   const router = useRouter();
 
   const moveToDetailPage = (id: number) => {
-    router.push(`/${id}`);
+    router.push(`/${id}?status=${status}&categoryType=${categoryType}`);
   };
 
   return (
@@ -50,7 +50,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
           <span className={cx('value')}>{formatPrice(price)}</span>
           <span className={cx('currency')}>{unit}</span>
         </div>
-        <div className={cx('date')}>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</div>
+        <div className={cx('date')}>{`${formatDate(startDate)} ~ ${formatDate(endDate)}`}</div>
       </div>
     </li>
   );

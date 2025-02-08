@@ -1,16 +1,16 @@
 import { useRef } from 'react';
 
+import { useParams } from 'next/navigation';
+
 import { useMutation } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
-import ky from 'ky';
+import ky, { HTTPError } from 'ky';
 
 import CheckBox from '@/app/(detail)/components/CheckBox';
 import useGroupByNotificationSubscribeModal from '@/app/(detail)/hooks/useGroupByNotificationSubscribeModal';
-import { SOKEY_API } from '@/app/(shared)/apiUrl';
+import { SOKEY_DOMAIN } from '@/app/(shared)/apiUrl';
 import { isValidEmail } from '@/app/(shared)/utils/isValidEmail';
 import { useModalStore } from '@/app/store/useModalStore';
-
-import useProductId from '../../store/useProductIdStore';
 
 import styles from './GroupBuyNotificationSubscribeModal.module.scss';
 
@@ -24,13 +24,13 @@ const GroupBuyNotificationSubscribeModal = () => {
 
   const { openModal, closeModal } = useModalStore();
 
-  const { productId } = useProductId();
+  const { id: productId } = useParams();
 
   // 공제 알림 신청 뮤테이션
   const { mutate: notificationRequestMutate } = useMutation<void, Error, { email?: string }>({
     mutationFn: ({ email }) => {
       return ky
-        .post(`${SOKEY_API}/${productId}/alarm`, {
+        .post(`${SOKEY_DOMAIN}/products/${productId}/alarm`, {
           json: {
             email: email,
           },
@@ -40,8 +40,11 @@ const GroupBuyNotificationSubscribeModal = () => {
     onSuccess: () => {
       openModal('success-notification-alert-modal');
     },
-    onError: (error) => {
-      console.error('Error:', error);
+    onError: async (error) => {
+      if (error instanceof HTTPError) {
+        const errorData = await error.response.json();
+        alert(errorData.message);
+      }
     },
   });
 

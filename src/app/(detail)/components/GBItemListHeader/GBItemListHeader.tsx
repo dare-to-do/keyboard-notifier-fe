@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import classNames from 'classnames/bind';
 
@@ -10,10 +10,13 @@ const cx = classNames.bind(styles);
 
 const GBItemListHeader = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const status = searchParams.get('status');
+  const categoryType = searchParams.get('categoryType');
 
   const onClickMoreButton = () => {
-    // 이전 페이지로 이동
-    router.push('/');
+    router.push(`/?status=${status}&categoryType=${categoryType}`);
   };
 
   return (

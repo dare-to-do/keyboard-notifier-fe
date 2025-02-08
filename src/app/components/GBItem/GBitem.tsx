@@ -32,7 +32,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
   const router = useRouter();
 
   const moveToDetailPage = (id: number) => {
-    router.push(`/${id}`);
+    router.push(`/${id}?status=${status}&categoryType=${categoryType}`);
   };
 
   return (
