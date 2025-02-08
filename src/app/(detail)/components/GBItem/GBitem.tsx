@@ -50,7 +50,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
           <span className={cx('value')}>{formatPrice(price)}</span>
           <span className={cx('currency')}>{unit}</span>
         </div>
-        <div className={cx('date')}>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</div>
+        <div className={cx('date')}>{`${formatDate(startDate)} ~ ${formatDate(endDate)}`}</div>
       </div>
     </li>
   );
