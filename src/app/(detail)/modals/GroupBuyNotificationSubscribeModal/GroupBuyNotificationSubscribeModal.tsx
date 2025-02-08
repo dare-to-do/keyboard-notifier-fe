@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 
 import { useMutation } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
-import ky from 'ky';
+import ky, { HTTPError } from 'ky';
 
 import CheckBox from '@/app/(detail)/components/CheckBox';
 import useGroupByNotificationSubscribeModal from '@/app/(detail)/hooks/useGroupByNotificationSubscribeModal';
@@ -40,8 +40,11 @@ const GroupBuyNotificationSubscribeModal = () => {
     onSuccess: () => {
       openModal('success-notification-alert-modal');
     },
-    onError: (error) => {
-      console.error('Error:', error);
+    onError: async (error) => {
+      if (error instanceof HTTPError) {
+        const errorData = await error.response.json();
+        alert(errorData.message);
+      }
     },
   });
 
