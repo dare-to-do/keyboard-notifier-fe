@@ -27,7 +27,7 @@ const GBItemCarousel = ({ imageUrlList }: GBItemCarouselProps) => {
         autoplaySpeed={3000}
       >
         {imageUrlList.map((url, index) => (
-          <img className={cx('image')} src={url} key={index} alt="image" width="584px" height="520px" />
+          <img className={cx('image')} src={url} key={index} alt="image" />
         ))}
       </Slider>
     </div>
