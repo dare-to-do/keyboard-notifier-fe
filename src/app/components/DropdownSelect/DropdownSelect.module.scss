@@ -47,6 +47,8 @@
   padding: 16px 24px 16px 24px;
   display: none; /* 기본적으로 숨김 */
   z-index: 1;
+  top: 49px;
+  left: -15px;
 
   &.show {
     display: block;

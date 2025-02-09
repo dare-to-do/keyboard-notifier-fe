@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 
-import { useQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
 
 import ScrollToTop from '@/app/(detail)/components/ScrollToTop';
@@ -44,7 +44,7 @@ const ProductMain = () => {
   const [productStatusOption, setProductStatusOption] = useState(initialStatusOption);
   const [filterOption, setFilterOption] = useState<FilterOptionsType>(FILTER_OPTIONS[0]);
 
-  const { data: defaultData } = useQuery(
+  const { data: defaultData } = useSuspenseQuery(
     getProductsQueryObject({
       productStatus: productStatusOption?.type,
       productType: productCategoryOption?.type,
@@ -52,7 +52,7 @@ const ProductMain = () => {
     }),
   );
 
-  const { data: notYetData } = useQuery(
+  const { data: notYetData } = useSuspenseQuery(
     getProductsQueryObject({
       productStatus: ProductStatusEnum.IN_PROGRESS,
       productType: ProductCategoryTypeEnum.ALL,
