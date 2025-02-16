@@ -60,7 +60,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
         </div>
         <p className={cx('date')}>{`${formatDate(startDate)} ~ ${formatDate(endDate)}`}</p>
       </div>
-      {isHover && <Notification />}
+      {isHover && <Notification productId={id.toString()} />}
     </li>
   );
 };

@@ -5,13 +5,15 @@ type ModalType = 'group-buy-notification-subscribe-modal' | 'success-notificatio
 type ModalState = {
   isOpen: boolean;
   modalType: ModalType | null;
-  openModal: (type: ModalType) => void;
+  productId: string;
+  openModal: (type: ModalType, productId?: string) => void;
   closeModal: () => void;
 };
 
 export const useModalStore = create<ModalState>((set) => ({
   isOpen: false,
   modalType: null,
-  openModal: (type) => set({ isOpen: true, modalType: type }),
+  productId: '',
+  openModal: (type, productId) => set({ isOpen: true, modalType: type, productId }),
   closeModal: () => set({ isOpen: false, modalType: null }),
 }));

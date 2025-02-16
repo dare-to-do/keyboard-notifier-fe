@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 import {
   gmarketSansBold,
   gmarketSansMedium,
@@ -49,6 +51,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </AppInitializer>
+        <GoogleAnalytics gaId="G-WHHT0CZ8BZ" />
       </body>
     </html>
   );

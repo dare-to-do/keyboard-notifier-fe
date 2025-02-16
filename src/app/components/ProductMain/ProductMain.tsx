@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 
+import { useSuspenseQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
 
 import ScrollToTop from '@/app/(detail)/components/ScrollToTop';
