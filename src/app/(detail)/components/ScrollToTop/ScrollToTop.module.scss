@@ -2,6 +2,7 @@
 @import '@/styles/variables.scss';
 
 .scroll-to-top {
+  cursor: pointer;
   padding: 12px;
   background-color: $gray-70;
   outline: none;

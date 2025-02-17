@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
 
 import ProductCategoryTypeChip from '@/app/(detail)/components/ProductCategoryTypeChip';
 import ProductStatusChip from '@/app/components/ProductStatusChip';
-import { ProductsRes } from '@/app/types/api/product';
+import { Product, ProductsRes } from '@/app/types/api/product';
 
 import styles from './ProductsBanner.module.scss';
 
@@ -18,6 +20,8 @@ type ProductsBannerProps = {
 const ProductsBanner = ({ products }: ProductsBannerProps) => {
   const [autoplay, setAutoPlay] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(1);
+
+  const router = useRouter();
 
   const sliderRef = useRef<Slider>(null);
 
@@ -46,6 +50,14 @@ const ProductsBanner = ({ products }: ProductsBannerProps) => {
     return null;
   }
 
+  const moveToDetailPage = (product: Product) => {
+    const productId = product.id;
+    const status = product.productStatus;
+    const categoryType = product.productType;
+
+    router.push(`/${productId}?status=${status}&categoryType=${categoryType}`);
+  };
+
   return (
     <div className={cx('slider-container')}>
       <Slider
@@ -61,7 +73,7 @@ const ProductsBanner = ({ products }: ProductsBannerProps) => {
         ref={sliderRef}
       >
         {productList.map((product) => (
-          <div key={product.id} className={cx('banner')}>
+          <div key={product.id} className={cx('banner')} onClick={() => moveToDetailPage(product)}>
             <div
               style={{
                 backgroundImage: `url(${product.imageUrl[0]})`,
