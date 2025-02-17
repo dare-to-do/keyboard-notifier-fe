@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { sendGAEvent } from '@next/third-parties/google';
 import classNames from 'classnames/bind';
 
 import ProductStatusChip from '@/app/(detail)/components/GBItemStatusChip/ProductStatusChip';
@@ -35,6 +36,14 @@ const GBItemInformation = ({
   endDate,
   productUrl,
 }: GBItemInformationProps) => {
+  const handleClick = () => {
+    sendGAEvent({
+      action: 'click_product_page',
+      category: 'click event',
+      label: '해당 상품 보러가기 클릭',
+    });
+  };
+
   return (
     <section className={cx('container')}>
       <div className={cx('badges')}>
@@ -51,7 +60,7 @@ const GBItemInformation = ({
       </div>
       <div className={cx('buttons')}>
         {status === 'IN_PROGRESS' || status === 'NOT_YET' ? <NotificationSubscribeButton /> : null}
-        <Link href={productUrl} target="_blank">
+        <Link href={productUrl} target="_blank" onClick={handleClick}>
           <NavigateToProductPageButton />
         </Link>
       </div>

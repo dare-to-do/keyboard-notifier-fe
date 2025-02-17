@@ -12,12 +12,12 @@ import styles from './ModalManager.module.scss';
 const cx = classNames.bind(styles);
 
 const ModalManager = () => {
-  const { isOpen, modalType, closeModal } = useModalStore();
+  const { isOpen, modalType, closeModal, productId } = useModalStore();
 
   const renderModal = () => {
     switch (modalType) {
       case 'group-buy-notification-subscribe-modal':
-        return <GroupBuyNotificationSubscribeModal />;
+        return <GroupBuyNotificationSubscribeModal productId={productId} />;
       case 'success-notification-alert-modal':
         return <SuccessNotificationAlertModal />;
       default:

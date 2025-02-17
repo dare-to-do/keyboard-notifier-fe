@@ -8,12 +8,16 @@ import styles from './Notification.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Notification = () => {
+type NotificationProps = {
+  productId: string;
+};
+
+const Notification = ({ productId }: NotificationProps) => {
   const { openModal } = useModalStore();
 
   const subscribeNotification: MouseEventHandler = (e) => {
     e.stopPropagation();
-    openModal('group-buy-notification-subscribe-modal');
+    openModal('group-buy-notification-subscribe-modal', productId);
   };
 
   return (

@@ -1,7 +1,5 @@
 import { useRef } from 'react';
 
-import { useParams } from 'next/navigation';
-
 import { useMutation } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
 import ky, { HTTPError } from 'ky';
@@ -16,15 +14,17 @@ import styles from './GroupBuyNotificationSubscribeModal.module.scss';
 
 const cx = classNames.bind(styles);
 
-const GroupBuyNotificationSubscribeModal = () => {
+type GroupBuyNotificationSubscribeModalProps = {
+  productId: string;
+};
+
+const GroupBuyNotificationSubscribeModal = ({ productId }: GroupBuyNotificationSubscribeModalProps) => {
   const emailInputRef = useRef<HTMLInputElement | null>(null);
 
   const { checkedEmail, setCheckedEmail, onClickEnabledEmailCheckbox, onClickDisabledEmailCheckbox } =
     useGroupByNotificationSubscribeModal(emailInputRef);
 
   const { openModal, closeModal } = useModalStore();
-
-  const { id: productId } = useParams();
 
   // 공제 알림 신청 뮤테이션
   const { mutate: notificationRequestMutate } = useMutation<void, Error, { email?: string }>({
