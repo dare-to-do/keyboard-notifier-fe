@@ -50,7 +50,22 @@ const GBItemCarousel = ({ imageUrlList }: GBItemCarouselProps) => {
         arrows={showArrows}
         prevArrow={<CustomPrevArrow />}
         nextArrow={<CustomNextArrow />}
-        dots={false}
+        dots={true}
+        appendDots={(dots) => (
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '10px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <ul> {dots} </ul>
+          </div>
+        )}
         speed={500}
         autoplay
         autoplaySpeed={3000}
