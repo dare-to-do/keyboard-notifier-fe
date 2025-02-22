@@ -14,6 +14,8 @@ const getProductsQueryKey = (params?: ProductReq) => [
   params?.sortBy,
   params?.productStatus,
   params?.productType,
+  params?.page,
+  params?.size,
 ];
 
 export const getProductsQueryObject = (params?: ProductReq) => {

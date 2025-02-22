@@ -28,8 +28,6 @@ import styles from './ProductMain.module.scss';
 
 const cx = classNames.bind(styles);
 
-const PAGE_SIZE = 3;
-
 const ProductMain = () => {
   const searchParams = useSearchParams();
 
@@ -52,7 +50,7 @@ const ProductMain = () => {
       productType: productCategoryOption?.type,
       sortBy: filterOption?.type,
       page: 1,
-      size: PAGE_SIZE,
+      size: 15,
     }),
   );
 
