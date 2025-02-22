@@ -34,6 +34,8 @@ export const getProductsQueryObject = (params?: ProductReq) => {
                   productType: params?.productType,
                 }),
             sortBy: params?.sortBy || '',
+            page: params?.page?.toString() || '1',
+            size: params?.size?.toString() || '15',
           }),
         })
         .json(),

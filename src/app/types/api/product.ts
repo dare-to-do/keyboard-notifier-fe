@@ -58,6 +58,8 @@ export type ProductReq = {
   sortBy?: SortByEnumType;
   productStatus?: ProductStatusEnumType;
   productType?: ProductCategoryEnumType;
+  page?: number;
+  size?: number;
 };
 
 export type ProductDetailRes = {
