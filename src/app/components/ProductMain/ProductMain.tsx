@@ -28,7 +28,7 @@ import styles from './ProductMain.module.scss';
 
 const cx = classNames.bind(styles);
 
-const PAGE_SIZE = 15;
+const PAGE_SIZE = 3;
 
 const ProductMain = () => {
   const searchParams = useSearchParams();
