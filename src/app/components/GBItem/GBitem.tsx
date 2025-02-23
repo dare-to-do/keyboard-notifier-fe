@@ -31,8 +31,8 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
   const [isHover, setIsHover] = useState(false);
   const router = useRouter();
 
-  const moveToDetailPage = (id: number) => {
-    router.push(`/${id}?status=${status}&categoryType=${categoryType}`);
+  const moveToDetailPage = (productId: number) => {
+    router.push(`/${productId}?status=${status}&categoryType=${categoryType}`);
   };
 
   return (

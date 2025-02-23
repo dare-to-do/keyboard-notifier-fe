@@ -49,6 +49,8 @@ const ProductMain = () => {
       productStatus: productStatusOption?.type,
       productType: productCategoryOption?.type,
       sortBy: filterOption?.type,
+      page: 1,
+      size: 15,
     }),
   );
 
