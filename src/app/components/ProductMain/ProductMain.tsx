@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
@@ -17,18 +17,22 @@ import {
   ProductCategoryOptionsType,
   ProductStatusOptionsType,
 } from '@/app/(shared)/constants';
+import { debounce } from '@/app/(shared)/utils/debounce';
 import CategoryTabs from '@/app/components/CategoryTabs';
 import DropdownSelect from '@/app/components/DropdownSelect';
 import GBItemCount from '@/app/components/GBItemCount/GBItemCount';
 import GBItemList from '@/app/components/GBItemList';
 import ProductsBanner from '@/app/components/ProductBanner';
-import { ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
+import { Product, ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
 
 import styles from './ProductMain.module.scss';
 
 const cx = classNames.bind(styles);
 
 const ProductMain = () => {
+  const [productList, setProductList] = useState<Product[]>([]);
+  const [page, setPage] = useState(1);
+
   const searchParams = useSearchParams();
 
   const categoryType = searchParams.get('categoryType');
@@ -49,7 +53,7 @@ const ProductMain = () => {
       productStatus: productStatusOption?.type,
       productType: productCategoryOption?.type,
       sortBy: filterOption?.type,
-      page: 1,
+      page: page,
       size: 15,
     }),
   );
@@ -74,7 +78,34 @@ const ProductMain = () => {
     setFilterOption(option);
   };
 
-  const productList = defaultData?.data.content;
+  // const productList = defaultData?.data.content;
+
+  // 데이터 업데이트
+  useEffect(() => {
+    if (defaultData?.data.content) {
+      setProductList((prevList) => [...prevList, ...defaultData.data.content]);
+    }
+  }, [defaultData]);
+
+  // 페이지 업데이트
+  const handleScrollEnd = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  // 스크롤 이벤트 핸들러
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      const isNearBottom = scrollHeight - (scrollTop + clientHeight) <= 200;
+
+      if (isNearBottom) {
+        handleScrollEnd();
+      }
+    }, 200); // 200ms 간격으로 실행됨
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
