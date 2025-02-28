@@ -23,7 +23,7 @@ const Notification = ({ productId }: NotificationProps) => {
   return (
     <div className={cx('container')} onClick={subscribeNotification}>
       <div className={cx('box')}>
-        <span className={cx('text')}>오픈 알림 신청</span>
+        <span className={cx('text')}>마감 알림 신청</span>
         <img src="/assets/icons/bell.png" alt="bell" width="24px" height="24px" />
       </div>
     </div>

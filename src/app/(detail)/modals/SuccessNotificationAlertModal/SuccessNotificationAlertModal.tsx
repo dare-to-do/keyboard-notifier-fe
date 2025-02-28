@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 const SuccessNotificationAlertModal = () => {
   const { closeModal } = useModalStore();
 
-  // 오픈 알림 신청 모달 닫기
+  // 마감 알림 신청 모달 닫기
   const onClickCloseSuccessNotificationAlertModal = () => {
     closeModal();
   };
