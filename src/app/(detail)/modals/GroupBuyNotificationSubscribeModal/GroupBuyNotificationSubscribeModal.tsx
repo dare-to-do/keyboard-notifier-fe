@@ -48,7 +48,7 @@ const GroupBuyNotificationSubscribeModal = ({ productId }: GroupBuyNotificationS
     },
   });
 
-  // 오픈 알림 신청 모달 닫기
+  // 마감 알림 신청 모달 닫기
   const onClickCloseNotificationSubscribeModal = () => {
     closeModal();
   };
