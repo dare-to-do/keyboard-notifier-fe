@@ -43,10 +43,8 @@ const GBItemCarousel = ({ imageUrlList }: GBItemCarouselProps) => {
       onMouseLeave={() => setShowArrows(false)}
     >
       {imageUrlList.length === 1 ? (
-        <div className={cx('slider')}>
-          <div className={cx('image-wrapper')}>
-            <img className={cx('image')} src={imageUrlList[0]} alt="image" />
-          </div>
+        <div className={cx('single-image-wrapper')}>
+          <img className={cx('image')} src={imageUrlList[0]} alt="image" />
         </div>
       ) : (
         <Slider

@@ -104,3 +104,18 @@
   display: flex;
   justify-content: center;
 }
+
+.single-image-wrapper {
+  width: 584px;
+  height: 520px;
+
+  @include tablet {
+    width: 100vw;
+    height: 360px;
+  }
+
+  @include mobile {
+    width: 100vw;
+    height: 240px;
+  }
+}
