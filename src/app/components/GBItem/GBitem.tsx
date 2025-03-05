@@ -42,7 +42,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
       })}
       role="button"
       style={{
-        backgroundImage: `linear-gradient(180deg, rgba(23, 23, 25, 0) 33.09%, rgba(23, 23, 25, 0.18) 53.58%, rgba(23, 23, 25, 0.3) 74.45%), url(${imageUrl[0]})`,
+        backgroundImage: `linear-gradient(180deg, rgba(23, 23, 25, 0) 33.09%, rgba(23, 23, 25, 0.18) 53.58%, rgba(23, 23, 25, 0.3) 74.45%), url(/api/image-proxy?url=${encodeURIComponent(imageUrl[0])})`,
       }}
       onClick={() => moveToDetailPage(id)}
       onMouseOver={() => setIsHover(true)}
