@@ -44,7 +44,12 @@ const GBItemCarousel = ({ imageUrlList }: GBItemCarouselProps) => {
     >
       {imageUrlList.length === 1 ? (
         <div className={cx('single-image-wrapper')}>
-          <img className={cx('image')} src={imageUrlList[0]} alt="image" />
+          <img
+            className={cx('image')}
+            src={`/api/image-proxy?url=${encodeURIComponent(imageUrlList[0])}`}
+            alt="image"
+            style={{ borderRadius: '16px' }}
+          />
         </div>
       ) : (
         <Slider
@@ -77,7 +82,7 @@ const GBItemCarousel = ({ imageUrlList }: GBItemCarouselProps) => {
         >
           {imageUrlList.map((url, index) => (
             <div className={cx('image-wrapper')} key={index}>
-              <img className={cx('image')} src={url} alt="image" />
+              <img className={cx('image')} src={`/api/image-proxy?url=${encodeURIComponent(url)}`} alt="image" />
             </div>
           ))}
         </Slider>
