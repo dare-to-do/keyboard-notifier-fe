@@ -36,7 +36,7 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
       className={cx('item')}
       role="button"
       style={{
-        backgroundImage: `url(${imageUrl[0]})`,
+        backgroundImage: `url(/api/image-proxy?url=${encodeURIComponent(imageUrl[0])})`,
       }}
       onClick={() => moveToDetailPage(id)}
     >

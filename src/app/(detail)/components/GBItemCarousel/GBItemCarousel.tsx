@@ -42,40 +42,51 @@ const GBItemCarousel = ({ imageUrlList }: GBItemCarouselProps) => {
       onMouseEnter={() => setShowArrows(true)}
       onMouseLeave={() => setShowArrows(false)}
     >
-      <Slider
-        className={cx('slider')}
-        slidesToShow={1}
-        centerMode
-        centerPadding="0px"
-        arrows={showArrows}
-        prevArrow={<CustomPrevArrow />}
-        nextArrow={<CustomNextArrow />}
-        dots={true}
-        appendDots={(dots) => (
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '10px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <ul> {dots} </ul>
-          </div>
-        )}
-        speed={500}
-        autoplay
-        autoplaySpeed={3000}
-      >
-        {imageUrlList.map((url, index) => (
-          <div className={cx('image-wrapper')} key={index}>
-            <img className={cx('image')} src={url} alt="image" />
-          </div>
-        ))}
-      </Slider>
+      {imageUrlList.length === 1 ? (
+        <div className={cx('single-image-wrapper')}>
+          <img
+            className={cx('image')}
+            src={`/api/image-proxy?url=${encodeURIComponent(imageUrlList[0])}`}
+            alt="image"
+            style={{ borderRadius: '16px' }}
+          />
+        </div>
+      ) : (
+        <Slider
+          className={cx('slider')}
+          slidesToShow={1}
+          centerMode
+          centerPadding="0px"
+          arrows={showArrows}
+          prevArrow={<CustomPrevArrow />}
+          nextArrow={<CustomNextArrow />}
+          dots={true}
+          appendDots={(dots) => (
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '10px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <ul> {dots} </ul>
+            </div>
+          )}
+          speed={500}
+          autoplay
+          autoplaySpeed={3000}
+        >
+          {imageUrlList.map((url, index) => (
+            <div className={cx('image-wrapper')} key={index}>
+              <img className={cx('image')} src={`/api/image-proxy?url=${encodeURIComponent(url)}`} alt="image" />
+            </div>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 };

@@ -76,7 +76,7 @@ const ProductsBanner = ({ products }: ProductsBannerProps) => {
           <div key={product.id} className={cx('banner')} onClick={() => moveToDetailPage(product)}>
             <div
               style={{
-                backgroundImage: `url(${product.imageUrl[0]})`,
+                backgroundImage: `url(/api/image-proxy?url=${encodeURIComponent(product.imageUrl[0])})`,
               }}
               className={cx('banner-img')}
             >
