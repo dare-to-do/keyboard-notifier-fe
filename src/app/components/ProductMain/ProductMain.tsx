@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
+import { useInView } from 'react-intersection-observer';
 
 import ScrollToTop from '@/app/(detail)/components/ScrollToTop';
 import { getProductsQueryObject } from '@/app/(queries)/productsQueries';
@@ -74,6 +75,14 @@ const ProductMain = () => {
 
   const productList = defaultData?.data.content;
 
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      console.log('무한스크롤 요청');
+    }
+  }, [inView]);
+
   return (
     <>
       <ProductsBanner products={notYetData} />
@@ -95,6 +104,7 @@ const ProductMain = () => {
           </div>
           <GBItemList productList={productList} onHandleProductCategoryOptions={handleProductCategoryOptions} />
         </div>
+        <div ref={ref} />
         <ScrollToTop />
       </div>
     </>
