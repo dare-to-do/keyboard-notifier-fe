@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
 import { useInView } from 'react-intersection-observer';
 
@@ -23,13 +23,18 @@ import DropdownSelect from '@/app/components/DropdownSelect';
 import GBItemCount from '@/app/components/GBItemCount/GBItemCount';
 import GBItemList from '@/app/components/GBItemList';
 import ProductsBanner from '@/app/components/ProductBanner';
-import { ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
+import { Product, ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
 
 import styles from './ProductMain.module.scss';
 
 const cx = classNames.bind(styles);
 
 const ProductMain = () => {
+  const [page, setPage] = useState(1);
+  const [productList, setProductList] = useState<Product[]>([]);
+
+  const [ref, inView] = useInView();
+
   const searchParams = useSearchParams();
 
   const categoryType = searchParams.get('categoryType');
@@ -45,11 +50,12 @@ const ProductMain = () => {
   const [productStatusOption, setProductStatusOption] = useState(initialStatusOption);
   const [filterOption, setFilterOption] = useState<FilterOptionsType>(FILTER_OPTIONS[0]);
 
-  const { data: defaultData } = useSuspenseQuery(
+  const { data: defaultData } = useQuery(
     getProductsQueryObject({
       productStatus: productStatusOption?.type,
       productType: productCategoryOption?.type,
       sortBy: filterOption?.type,
+      page,
     }),
   );
 
@@ -73,15 +79,22 @@ const ProductMain = () => {
     setFilterOption(option);
   };
 
-  const productList = defaultData?.data.content;
-
-  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView && defaultData?.data.content.length) {
+      setPage((prev) => prev + 1);
+    }
+  }, [inView, defaultData?.data.content.length]);
 
   useEffect(() => {
-    if (inView) {
-      console.log('무한스크롤 요청');
+    if (defaultData?.data.content) {
+      setProductList((prev) => [...prev, ...defaultData.data.content]);
     }
-  }, [inView]);
+  }, [defaultData?.data.content]);
+
+  useEffect(() => {
+    setPage(1);
+    setProductList(defaultData?.data.content || []);
+  }, [productCategoryOption, productStatusOption, filterOption]);
 
   return (
     <>
