@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 import classNames from 'classnames/bind';
 
 import styles from './DropdownSelect.module.scss';
@@ -17,34 +15,40 @@ type OptionsProps<T> = {
   selectedOption: T;
   options: T[];
   onClick: (option: T) => void;
+  isOpen: boolean;
+  onDropdownChange: (isOpen: boolean) => void;
 };
 
-const DropdownSelect = <T extends DropdownOption>({ selectedOption, options, onClick }: OptionsProps<T>) => {
-  const [isOpenDropdown, setIsOpenDropdown] = useState(false);
-
+const DropdownSelect = <T extends DropdownOption>({
+  selectedOption,
+  options,
+  onClick,
+  isOpen,
+  onDropdownChange,
+}: OptionsProps<T>) => {
   // 버튼 클릭 시 드롭다운으로 팝오버 표시
   const handleOnClickDropdown = () => {
-    setIsOpenDropdown(!isOpenDropdown);
+    onDropdownChange(!isOpen);
   };
 
   // 드롭다운 메뉴 아이템 클릭 시 텍스트 색상 변경
   const handleOnClickItem = (option: T) => {
-    setIsOpenDropdown(false);
+    onDropdownChange(false);
     onClick(option);
   };
 
   return (
     <div className={cx('container')}>
-      <div className={cx('button', { is_open_dropdown: isOpenDropdown })} onClick={handleOnClickDropdown}>
+      <div className={cx('button', { is_open_dropdown: isOpen })} onClick={handleOnClickDropdown}>
         <span className={cx('button_text')}>{selectedOption?.label}</span>
         <img
-          src={isOpenDropdown ? '/assets/icons/accordian_fo.png' : '/assets/icons/accordian_en.png'}
-          alt={isOpenDropdown ? 'accordian_fo' : 'accordian_en'}
+          src={isOpen ? '/assets/icons/accordian_fo.png' : '/assets/icons/accordian_en.png'}
+          alt={isOpen ? 'accordian_fo' : 'accordian_en'}
           width="24px"
           height="24px"
         />
       </div>
-      <ul className={cx('dropdown', { show: isOpenDropdown, hide: !isOpenDropdown })}>
+      <ul className={cx('dropdown', { show: isOpen, hide: !isOpen })}>
         {options.map((option, index) => (
           <li
             className={cx('dropdown_item', { dropdown_item_is_clicked: option.type === selectedOption.type })}

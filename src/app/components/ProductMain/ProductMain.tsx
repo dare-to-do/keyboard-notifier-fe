@@ -32,6 +32,8 @@ const cx = classNames.bind(styles);
 const ProductMain = () => {
   const [page, setPage] = useState(1);
   const [productList, setProductList] = useState<Product[]>([]);
+  const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
+  const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
 
   const [ref, inView] = useInView();
 
@@ -79,6 +81,16 @@ const ProductMain = () => {
     setFilterOption(option);
   };
 
+  const handleStatusDropdownOpen = (isOpen: boolean) => {
+    setStatusDropdownOpen(isOpen);
+    if (isOpen) setFilterDropdownOpen(false);
+  };
+
+  const handleFilterDropdownOpen = (isOpen: boolean) => {
+    setFilterDropdownOpen(isOpen);
+    if (isOpen) setStatusDropdownOpen(false);
+  };
+
   useEffect(() => {
     if (inView && defaultData?.data.content.length) {
       setPage((prev) => prev + 1);
@@ -112,8 +124,16 @@ const ProductMain = () => {
               selectedOption={productStatusOption}
               options={PRODUCT_STATUS_OPTIONS}
               onClick={handleProductStatusOptions}
+              isOpen={statusDropdownOpen}
+              onDropdownChange={handleStatusDropdownOpen}
             />
-            <DropdownSelect selectedOption={filterOption} options={FILTER_OPTIONS} onClick={handleFilterOptions} />
+            <DropdownSelect
+              selectedOption={filterOption}
+              options={FILTER_OPTIONS}
+              onClick={handleFilterOptions}
+              isOpen={filterDropdownOpen}
+              onDropdownChange={handleFilterDropdownOpen}
+            />
           </div>
           <GBItemList productList={productList} onHandleProductCategoryOptions={handleProductCategoryOptions} />
         </div>
