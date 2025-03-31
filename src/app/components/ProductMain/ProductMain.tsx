@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
+import { useInView } from 'react-intersection-observer';
 
 import ScrollToTop from '@/app/(detail)/components/ScrollToTop';
 import { getProductsQueryObject } from '@/app/(queries)/productsQueries';
@@ -22,13 +23,20 @@ import DropdownSelect from '@/app/components/DropdownSelect';
 import GBItemCount from '@/app/components/GBItemCount/GBItemCount';
 import GBItemList from '@/app/components/GBItemList';
 import ProductsBanner from '@/app/components/ProductBanner';
-import { ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
+import { Product, ProductCategoryTypeEnum, ProductStatusEnum, SortByEnum } from '@/app/types/api/product';
 
 import styles from './ProductMain.module.scss';
 
 const cx = classNames.bind(styles);
 
 const ProductMain = () => {
+  const [page, setPage] = useState(1);
+  const [productList, setProductList] = useState<Product[]>([]);
+  const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
+  const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
+
+  const [ref, inView] = useInView();
+
   const searchParams = useSearchParams();
 
   const categoryType = searchParams.get('categoryType');
@@ -44,11 +52,12 @@ const ProductMain = () => {
   const [productStatusOption, setProductStatusOption] = useState(initialStatusOption);
   const [filterOption, setFilterOption] = useState<FilterOptionsType>(FILTER_OPTIONS[0]);
 
-  const { data: defaultData } = useSuspenseQuery(
+  const { data: defaultData } = useQuery(
     getProductsQueryObject({
       productStatus: productStatusOption?.type,
       productType: productCategoryOption?.type,
       sortBy: filterOption?.type,
+      page,
     }),
   );
 
@@ -72,7 +81,32 @@ const ProductMain = () => {
     setFilterOption(option);
   };
 
-  const productList = defaultData?.data.content;
+  const handleStatusDropdownOpen = (isOpen: boolean) => {
+    setStatusDropdownOpen(isOpen);
+    if (isOpen) setFilterDropdownOpen(false);
+  };
+
+  const handleFilterDropdownOpen = (isOpen: boolean) => {
+    setFilterDropdownOpen(isOpen);
+    if (isOpen) setStatusDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    if (inView && defaultData?.data.content.length) {
+      setPage((prev) => prev + 1);
+    }
+  }, [inView, defaultData?.data.content.length]);
+
+  useEffect(() => {
+    if (defaultData?.data.content) {
+      setProductList((prev) => [...prev, ...defaultData.data.content]);
+    }
+  }, [defaultData?.data.content]);
+
+  useEffect(() => {
+    setPage(1);
+    setProductList(defaultData?.data.content || []);
+  }, [productCategoryOption, productStatusOption, filterOption]);
 
   return (
     <>
@@ -90,11 +124,20 @@ const ProductMain = () => {
               selectedOption={productStatusOption}
               options={PRODUCT_STATUS_OPTIONS}
               onClick={handleProductStatusOptions}
+              isOpen={statusDropdownOpen}
+              onDropdownChange={handleStatusDropdownOpen}
             />
-            <DropdownSelect selectedOption={filterOption} options={FILTER_OPTIONS} onClick={handleFilterOptions} />
+            <DropdownSelect
+              selectedOption={filterOption}
+              options={FILTER_OPTIONS}
+              onClick={handleFilterOptions}
+              isOpen={filterDropdownOpen}
+              onDropdownChange={handleFilterDropdownOpen}
+            />
           </div>
           <GBItemList productList={productList} onHandleProductCategoryOptions={handleProductCategoryOptions} />
         </div>
+        <div ref={ref} />
         <ScrollToTop />
       </div>
     </>
