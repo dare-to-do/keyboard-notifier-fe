@@ -1,16 +1,25 @@
 @import '@/styles/variables.scss';
 @import '@/styles/mixins.scss';
 
-.item {
+@keyframes hoverEffect {
+  0% {
+    background-color: rgba(23, 23, 25, 0);
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    background-color: rgba(23, 23, 25, 0.5);
+    backdrop-filter: blur(4px);
+  }
+}
+
+.list {
   background-size: cover;
-  padding: 20px;
   border-radius: 12px;
   height: 252px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   position: relative;
-  justify-content: space-between;
 
   box-sizing: border-box;
   overflow: hidden;
@@ -22,19 +31,32 @@
   @include mobile {
     height: 200px;
   }
+
+  &.hover .info-wrap {
+    animation: hoverEffect 0.5s forwards;
+    background: linear-gradient(
+      180deg,
+      rgba(23, 23, 25, 0) 33.09%,
+      rgba(23, 23, 25, 0.18) 53.58%,
+      rgba(23, 23, 25, 0.3) 74.45%
+    );
+  }
 }
 
-.badge-wrap {
-  display: flex;
+.chip-wrap {
+  padding: 20px;
+  flex: 1;
+  gap: 6px;
 }
 
-.content-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.info-wrap {
+  padding: 20px;
+  background-color: rgba(23, 23, 25, 0);
+  backdrop-filter: blur(0px);
+  transition: all 0.3s ease-in-out;
 }
 
-.title {
+.name {
   font-size: 14px;
   font-weight: 500;
   line-height: 120%;
@@ -42,12 +64,11 @@
   line-height: 16.8px;
 }
 
-.price {
-  display: flex;
-  gap: 4px;
+.price-wrap {
+  margin-bottom: 7px;
 }
 
-.value {
+.price {
   font-size: 20px;
   font-weight: 700;
   color: $green-50;
@@ -56,9 +77,10 @@
   line-height: 28px;
 }
 
-.currency {
+.unit {
   font-size: 18px;
-  line-height: 33.6px;
+  color: #fff;
+  font-weight: 400;
 }
 
 .date {
