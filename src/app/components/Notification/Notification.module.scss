@@ -17,14 +17,16 @@
   gap: 4px;
   cursor: pointer;
   background-color: transparent;
-  padding: 8px 10px 8px 10px;
-  transition:
-    width 0.3s ease,
-    background-color 0.3s ease;
+  padding: 8px 10px;
+  transition: all 0.3s ease;
+  width: 44px;
+  overflow: hidden;
 }
 
 .text {
-  display: none;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease;
   font-family: var(--font-pretendard-semi-bold);
   white-space: nowrap;
 }
@@ -35,6 +37,7 @@
   background-color: var(--Color-Dimmed_Hover, #ffffff33);
 
   .text {
-    display: inline;
+    opacity: 1;
+    transform: translateX(0);
   }
 }

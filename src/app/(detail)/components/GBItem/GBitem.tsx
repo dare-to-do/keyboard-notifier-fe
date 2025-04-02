@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useRouter } from 'next/navigation';
 
 import classNames from 'classnames/bind';
@@ -6,6 +8,7 @@ import ProductStatusChip from '@/app/(detail)/components/GBItemStatusChip/Produc
 import ProductCategoryTypeChip from '@/app/(detail)/components/ProductCategoryTypeChip';
 import { formatDate } from '@/app/(shared)/utils/date';
 import { formatPrice } from '@/app/(shared)/utils/price';
+import Notification from '@/app/components/Notification';
 import { ProductCategoryEnumType, ProductStatusEnumType } from '@/app/types/api/product';
 
 import styles from './GBitem.module.scss';
@@ -25,6 +28,7 @@ type GBItemProps = {
 };
 
 const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categoryType, id }: GBItemProps) => {
+  const [isHover, setIsHover] = useState(false);
   const router = useRouter();
 
   const moveToDetailPage = (id: number) => {
@@ -33,25 +37,30 @@ const GBItem = ({ name, price, unit, startDate, endDate, imageUrl, status, categ
 
   return (
     <li
-      className={cx('item')}
+      className={cx('list', {
+        hover: isHover,
+      })}
       role="button"
       style={{
-        backgroundImage: `url(/api/image-proxy?url=${encodeURIComponent(imageUrl[0])})`,
+        backgroundImage: `linear-gradient(180deg, rgba(23, 23, 25, 0) 33.09%, rgba(23, 23, 25, 0.18) 53.58%, rgba(23, 23, 25, 0.3) 74.45%), url(/api/image-proxy?url=${encodeURIComponent(imageUrl[0])})`,
       }}
       onClick={() => moveToDetailPage(id)}
+      onMouseOver={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
     >
-      <div className={cx('badge-wrap')}>
+      <div className={cx('chip-wrap')}>
         <ProductStatusChip status={status} />
         <ProductCategoryTypeChip categoryType={categoryType} />
       </div>
-      <div className={cx('content-wrap')}>
-        <div className={cx('title')}>{name}</div>
-        <div className={cx('price')}>
-          <span className={cx('value')}>{formatPrice(price)}</span>
-          <span className={cx('currency')}>{unit}</span>
+      <div className={cx('info-wrap')}>
+        <h3 className={cx('name')}>{name}</h3>
+        <div className={cx('price-wrap')}>
+          <span className={cx('price')}>{formatPrice(price)}</span>
+          <span className={cx('unit')}>{unit}</span>
         </div>
-        <div className={cx('date')}>{`${formatDate(startDate)} ~ ${formatDate(endDate)}`}</div>
+        <p className={cx('date')}>{`${formatDate(startDate)} ~ ${formatDate(endDate)}`}</p>
       </div>
+      {isHover && <Notification productId={id.toString()} status={status} />}
     </li>
   );
 };

@@ -59,7 +59,7 @@ const GBItemInformation = ({
         <p className={cx('period')}>{`${formatDate(startDate)} ~ ${formatDate(endDate)}`}</p>
       </div>
       <div className={cx('buttons')}>
-        {status === 'IN_PROGRESS' || status === 'NOT_YET' ? <NotificationSubscribeButton /> : null}
+        {status === 'IN_PROGRESS' || status === 'NOT_YET' ? <NotificationSubscribeButton status={status} /> : null}
         <Link href={productUrl} target="_blank" onClick={handleClick}>
           <NavigateToProductPageButton />
         </Link>
