@@ -41,6 +41,7 @@ const GBItemInformation = ({
       action: 'click_product_page',
       category: 'click event',
       label: '해당 상품 보러가기 클릭',
+      value: productUrl,
     });
   };
 
